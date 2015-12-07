@@ -1,0 +1,5 @@
+markdown: redcarpet
+Redcarpet:
+    extensions: ["fenced_code_blocks", "no_intra_emphasis", "autolink", "strikethrough", "with_toc_data", "space_after_headers","prettify"]
+
+permalink: /:title
