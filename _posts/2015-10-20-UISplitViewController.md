@@ -1,6 +1,7 @@
 ---
-layout: default
+layout: page
 title: UISplitViewController
+category: iOS
 ---
 
 [TOC]
