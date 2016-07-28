@@ -59,8 +59,10 @@ redcarpet:
     - with_toc_data
     - space_after_headers
     - prettify
+    - tables
+    - superscript
 # redcarpet :
-#   extensions : ["fenced_code_blocks", "no_intra_emphasis", "autolink", "strikethrough", "with_toc_data", "space_after_headers","prettify"]
+#   extensions : ["fenced_code_blocks", "no_intra_emphasis", "autolink", "strikethrough", "with_toc_data", "space_after_headers","prettify", "tables", "superscript"]
 
 kramdown:
   auto_ids:       true
