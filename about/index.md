@@ -5,7 +5,7 @@ tags: [about]
 comments: false
 ---
 
-<center><a href="http://taylantatli.github.io/Moon"><b>Moon</b></a> is a minimal, one column jekyll theme.</center>
+<!-- <center><a href="http://taylantatli.github.io/Moon"><b>Moon</b></a> is a minimal, one column jekyll theme.</center>
 
 ## Features
 * Minimal, you can focus on your content
@@ -33,4 +33,4 @@ See a [live version of Moon](http://taylantatli.github.io/Moon) hosted on GitHub
 
 To learn how to install and use this theme check out the [Setup Guide](http://taylantatli.me/Moon/moon-theme/) for more information.
 
-[Install Moon](https://github.com/TaylanTatli/Moon){: .btn}
+[Install Moon](https://github.com/TaylanTatli/Moon){: .btn} -->

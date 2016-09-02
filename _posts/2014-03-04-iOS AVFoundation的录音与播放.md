@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: iOS AVFoundation的录音与播放
 motto:
 excerpt: "A ton of text to test readability with image feature."
