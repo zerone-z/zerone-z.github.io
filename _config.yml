@@ -48,7 +48,7 @@ gems:      []
 # 转换
 markdown:           kramdown
 highlighter:        rouge
-mathjax:            true
+mathjax:            false
 lsi:                false
 excerpt_separator:  "\n\n"
 incremental:        false
@@ -98,7 +98,10 @@ kramdown:
     coderay_css:               style
 
 # 评论
+commentFlag:        true
 #disqus_shortname:   taylantatli
+commentitUsername:  myzerone
+commentitRepo:      myzerone/myzerone.github.io
 
 #社会化组建
 #if you don't have any of social below, comment the line.

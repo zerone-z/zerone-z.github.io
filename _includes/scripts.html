@@ -17,6 +17,6 @@
       ga('send', 'pageview');
     </script>
     {% endif %}
-    {% if page.comments != false %}
-        {% include disqus_comments.html %}
+    {% if page.commentFlag != false %}
+        {% include commentit_comments.html %}
     {% endif %}

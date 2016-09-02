@@ -2,7 +2,7 @@
 layout: page
 title: 关于
 tags: [about]
-comments: false
+commentFlag: false
 ---
 
 <!-- <center><a href="http://taylantatli.github.io/Moon"><b>Moon</b></a> is a minimal, one column jekyll theme.</center>
