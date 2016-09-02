@@ -1,3 +1,22 @@
+# 站点设置
+title:              myzerone
+bio:                'Minimal, one column jekyll theme.'
+description:        "Moon is a minimal, one column jekyll theme for your blog."
+reading_time:       true
+words_per_minute:   200
+logo:               'assets/img/logo.png'
+background:         'assets/img/placeholder-big.jpg'
+tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
+locale:             zh_CN
+# url:                http://myzerone.com
+email:              myzerone@myzerone.com
+
+# 服务器选项
+detach:  false
+port:    4000
+host:    127.0.0.1
+baseurl: "" # does not include hostname
+
 # 目录结构
 source:      .
 destination: ./_site
@@ -5,11 +24,14 @@ plugins_dir: ./_plugins
 layouts_dir: ./_layouts
 data_dir:    ./_data
 # collections: null
+sass:
+  sass_dir:         _sass
+  style:            compressed
 
 # 阅读处理
 safe:         false
 include:      [".htaccess"]
-exclude:      []
+exclude:      [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]
 keep_files:   [".git", ".svn"]
 encoding:     "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
@@ -25,20 +47,15 @@ whitelist: []
 gems:      []
 
 # 转换
-markdown:    redcarpet
+markdown:    kramdown
 highlighter: rouge
+mathjax:     true
 lsi:         false
 excerpt_separator: "\n\n"
 incremental: false
 
-# 服务器选项
-detach:  false
-port:    4000
-host:    127.0.0.1
-baseurl: "" # does not include hostname
-
 # 输出
-permalink:     /:title
+permalink:     /:title/
 paginate_path: /page:num
 timezone:      null
 
@@ -65,6 +82,7 @@ redcarpet:
 #   extensions : ["fenced_code_blocks", "no_intra_emphasis", "autolink", "strikethrough", "with_toc_data", "space_after_headers","prettify", "tables", "superscript"]
 
 kramdown:
+  input:          GFM
   auto_ids:       true
   footnote_nr:    1
   entity_output:  as_char
@@ -79,3 +97,47 @@ kramdown:
     coderay_tab_width:         4
     coderay_bold_every:        10
     coderay_css:               style
+
+# 评论
+#disqus_shortname:   taylantatli
+
+# 社会化组建
+# if you don't have any of social below, comment the line.
+#google:
+  #plus:            #username
+  #analytics:
+  #verify:
+  #ad-client:
+  #ad-slot:
+#bing-verify:
+#email:
+# twitter:            username
+# facebook:           username
+# github:             username
+#stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
+#linkedin:          username
+#xing:              username
+# instagram:          username
+#lastfm:            username
+#tumblr:            username
+#pinterest:         username
+#foursquare:        username
+# steam:              username
+#dribbble:          username
+#youtube:           username
+#soundcloud:        username
+#weibo:             username
+#flickr:            username
+#codepen:           username
+#keybase:           username
+#xmpp:              username@server.com
+#hackernews:        username
+
+# Gems
+gems:
+  - jekyll-mentions
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-gist
+jekyll-mentions:
+    base_url: https://github.com

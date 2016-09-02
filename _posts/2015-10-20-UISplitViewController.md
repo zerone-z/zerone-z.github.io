@@ -1,7 +1,9 @@
 ---
 layout: page
 title: UISplitViewController
-category: iOS
+excerpt: "A ton of text to test readability with image feature."
+tags: [iOS]
+comments: false
 ---
 
 [TOC]

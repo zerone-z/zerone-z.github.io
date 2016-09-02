@@ -1,7 +1,9 @@
 ---
 layout: page
 title: iOS AVFoundation的录音与播放
-categorys: iOS, AVFoundation, 录音
+excerpt: "A ton of text to test readability with image feature."
+tags: [iOS, AVFoundation, 录音]
+comments: false
 ---
 
 > 这是我第一次撰写博客，大部分内容都来自网络，写的不对地方还请多多指教，如果有摘录的地方与原作略有相同还请谅解说明。请多多支持。
