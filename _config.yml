@@ -1,21 +1,20 @@
 # 站点设置
 title:              myzerone
-bio:                'Minimal, one column jekyll theme.'
-description:        "Moon is a minimal, one column jekyll theme for your blog."
+bio:                '嗨，大家好，我是一位来自中国的iOS开发者'
+description:        "记录下自己学习的过程、点滴，也为了分享自己的收获。"
 reading_time:       true
 words_per_minute:   200
 logo:               'assets/img/logo.png'
 background:         'assets/img/placeholder-big.jpg'
 tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
 locale:             zh_CN
-# url:                http://myzerone.com
-email:              myzerone@myzerone.com
 
 # 服务器选项
 detach:  false
 port:    4000
 host:    127.0.0.1
-baseurl: "" # does not include hostname
+baseurl: ""
+#baseurl: "http://myzerone.com" # does not include hostname
 
 # 目录结构
 source:      .
@@ -47,12 +46,12 @@ whitelist: []
 gems:      []
 
 # 转换
-markdown:    kramdown
-highlighter: rouge
-mathjax:     true
-lsi:         false
-excerpt_separator: "\n\n"
-incremental: false
+markdown:           kramdown
+highlighter:        rouge
+mathjax:            true
+lsi:                false
+excerpt_separator:  "\n\n"
+incremental:        false
 
 # 输出
 permalink:     /:title/
@@ -101,8 +100,8 @@ kramdown:
 # 评论
 #disqus_shortname:   taylantatli
 
-# 社会化组建
-# if you don't have any of social below, comment the line.
+#社会化组建
+#if you don't have any of social below, comment the line.
 #google:
   #plus:            #username
   #analytics:
@@ -110,19 +109,19 @@ kramdown:
   #ad-client:
   #ad-slot:
 #bing-verify:
-#email:
-# twitter:            username
-# facebook:           username
-# github:             username
+email:              myzerone@myzerone.com
+#twitter:            username
+#facebook:           username
+github:             xj01
 #stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
 #linkedin:          username
 #xing:              username
-# instagram:          username
+#instagram:          username
 #lastfm:            username
 #tumblr:            username
 #pinterest:         username
 #foursquare:        username
-# steam:              username
+#steam:              username
 #dribbble:          username
 #youtube:           username
 #soundcloud:        username

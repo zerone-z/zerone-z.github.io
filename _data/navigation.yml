@@ -1,4 +1,15 @@
 # Site navigation links
 
-- title: Projects
-  url: /projects/
+home:
+    title: 首页
+about:
+    title: 关于
+posts:
+    title: 博客
+    allPosts:
+        title: 博客
+    allTags:
+        title: 标签
+projects:
+    title: 项目
+    url: /projects/

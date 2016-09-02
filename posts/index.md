@@ -1,6 +1,6 @@
 ---
 layout: post-list
-title: All Posts
-excerpt: "A List of Posts"
+title: 博客
+excerpt: "博客列表，按照时间倒序排列"
 comments: false
 ---
