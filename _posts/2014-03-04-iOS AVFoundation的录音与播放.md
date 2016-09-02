@@ -1,6 +1,7 @@
 ---
-layout: page
+layout: post
 title: iOS AVFoundation的录音与播放
+motto:
 excerpt: "A ton of text to test readability with image feature."
 tags: [iOS, AVFoundation, 录音]
 comments: false
@@ -186,4 +187,4 @@ _player.delegate = self; //委托事件
 
 ps : 录音类AVAudioRecorder最好设置为全局变量。如果为局部变量，当销毁掉时将结束录音。
 
-附：据此写出的仿[微信录音Demo](https://github.com/xj01/XJAudioRecorder)
+附：据此写出的仿[微信录音Demo](https://github.com/xj01/XJAudioRecorder){:target="_blank"}
