@@ -8,8 +8,8 @@ https://commentit.io/
 
 {% if site.commentFlag %}
     <!-- 历史评论列表 -->
-    {%if page.comments %}
-      {% assign sorted_comments = (page.comments | sort: 'date') %}
+    {%if site.data.datafileComments[page.id] %}
+      {% assign sorted_comments = (site.data.datafileComments[page.id] | sort: 'date') %}
     {% endif %}
     {% for c in sorted_comments %}
       <div id="commentitList" class="media">
@@ -41,7 +41,8 @@ https://commentit.io/
       /** CONFIGURATION VARIABLES **/
       var commentitUsername = '{{ site.commentitUsername }}';
       var commentitRepo = '{{ site.commentitRepo }}';
-      var commentitPath = '{{ page.path }}';
+      var commentitId = '{{ page.id }}';
+      var commentitDatafile = 'datafileComments';
 
       /** DON'T EDIT FOLLOWING LINES **/
       (function() {
