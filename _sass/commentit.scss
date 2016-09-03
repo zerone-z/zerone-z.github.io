@@ -1,0 +1,55 @@
+.media {
+    margin-top: 15px
+}
+
+.media:first-child {
+    margin-top: 0
+}
+
+.media,.media-body {
+    zoom:1;
+    overflow: hidden
+}
+
+.media-body {
+    width: 100%;
+}
+
+.media-right,.media>.pull-right {
+    padding-left: 10px
+}
+
+.media-left,.media>.pull-left {
+    padding-right: 10px
+}
+
+.media-left,.media-right,.media-body {
+    display: table-cell;
+    vertical-align: top
+}
+
+.media a {
+    color: #0ce3ac;
+    text-decoration: none;
+}
+
+.media img {
+    max-width: none;
+    width: 73;
+    height: 73;
+}
+
+.media p {
+    margin-top: 0px;
+    margin-bottom: 10.5px;
+    word-wrap : break-word;
+    word-break: break-all;
+}
+
+.text-muted {
+    color: #999999;
+}
+
+#commentit {
+    margin-top: 15px;
+}
