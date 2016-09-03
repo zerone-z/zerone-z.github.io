@@ -16,6 +16,13 @@ comments:
       picture: 'https://avatars.githubusercontent.com/u/7497650?v=3&s=73'
     content: qww
     date: 2016-09-02T18:37:36.335Z
+  - author:
+      type: full
+      displayName: myzerone
+      url: 'https://github.com/myzerone'
+      picture: 'https://avatars.githubusercontent.com/u/7497650?v=3&s=73'
+    content: '1212'
+    date: 2016-09-03T13:34:58.571Z
 
 ---
 
