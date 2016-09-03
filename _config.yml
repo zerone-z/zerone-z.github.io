@@ -43,7 +43,13 @@ unpublished: false
 
 # 插件
 whitelist: []
-gems:      []
+gems:
+  - jekyll-mentions
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-gist
+jekyll-mentions:
+    base_url: https://github.com
 
 # 转换
 markdown:           kramdown
@@ -54,7 +60,7 @@ excerpt_separator:  "\n\n"
 incremental:        false
 
 # 输出
-permalink:     /:title/
+permalink:     /:year/:month/:day/:title/
 paginate_path: /page:num
 timezone:      null
 
@@ -134,12 +140,3 @@ github:             myzerone
 #keybase:           username
 #xmpp:              username@server.com
 #hackernews:        username
-
-# Gems
-gems:
-  - jekyll-mentions
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-gist
-jekyll-mentions:
-    base_url: https://github.com
