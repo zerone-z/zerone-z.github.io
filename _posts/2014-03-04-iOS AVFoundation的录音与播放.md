@@ -8,15 +8,7 @@ tags:
   - AVFoundation
   - 录音
 commentFlag: true
-comments:
-  - author:
-      type: full
-      displayName: myzerone
-      url: 'https://github.com/myzerone'
-      picture: 'https://avatars.githubusercontent.com/u/7497650?v=3&s=73'
-    content: qww
-    date: 2016-09-02T18:37:36.335Z
-
+commentDataFile: AVFoundationComments
 ---
 
 > 这是我第一次撰写博客，大部分内容都来自网络，写的不对地方还请多多指教，如果有摘录的地方与原作略有相同还请谅解说明。请多多支持。
