@@ -10,9 +10,10 @@ https://commentit.io/
     <!-- 历史评论列表 -->
     {%if site.data.comments[page.id] %}
       {% assign sorted_comments = (site.data.comments[page.id] | sort: 'date') %}
+      {{ sorted_comments.size }}
     {% endif %}
     {% for c in sorted_comments %}
-      <div id="commentitList" class="media">
+      <div id="commentitList{{ forloop.index }}" class="media">
         <div class="media-left">
           <img src="{{ c.author.picture }}" alt="{{ c.author.displayName}}">
         </div>
@@ -27,7 +28,7 @@ https://commentit.io/
 
       <script type="text/javascript">
         (function() {
-            document.getElementById('disqus_thread').appendChild(document.getElementById('commentitList'));
+            document.getElementById('disqus_thread').appendChild(document.getElementById('commentitList{{ forloop.index }}'));
         })();
       </script>
     {% else %}
