@@ -1,7 +1,11 @@
 ---
-layout: page
+layout: post
 title: iOS AssetsLibrary框架的使用
-categorys: iOS, AssetsLibrary, 图片, 视频
+motto: null
+excerpt: 使用AVFoundation，框架实现录音，播放音频
+tags: [iOS, AssetsLibrary, 图片, 视频]
+commentFlag: true
+project: false
 ---
 
 # iOS AssetsLibrary框架的使用
