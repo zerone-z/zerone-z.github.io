@@ -111,9 +111,9 @@ commentitRepo:      myzerone/myzerone.github.io
 
 #社会化组建
 #if you don't have any of social below, comment the line.
-#google:
+google:
   #plus:            #username
-  #analytics:
+  analytics:        UA-83690324-2
   #verify:
   #ad-client:
   #ad-slot:
