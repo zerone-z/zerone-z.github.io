@@ -8,11 +8,15 @@ excerpt: '保证良好的编写Designated Initializer的风格，可以让我们
 ---
 
 # Objective-C 拾遗：designated initializer #
+
 ## designated initializer是什么 ##
+
 > The initializer of a class that takes the full complement of initialization parameters is usually the designated initializer. [^1]
 
 来自官方文档的介绍是designated initializer 通常是接收最多初始化参数的一个initializer。
+
 ## designated initializer的作用 ##
+
 一个类通常会有一个提供便利初始化的initializer,它通常接收最多的初始化参数。而这个initializer便通常是designated initializer,一个类里面最重要的initializer。主要的implementation都写在这里。其他initializer则调用它即可,不需要重复写相关代码。这个模式保证了所有的初始化方法都正确地初始实例变量。  
 例如一个Task类，它有三个initializer
 
@@ -37,7 +41,9 @@ excerpt: '保证良好的编写Designated Initializer的风格，可以让我们
     return [self initWithTitle:@”Task”];
 }
 ```
+
 ## designated initializer的使用 ##
+
 一直以来,在Objective-C中,designated initializer是作为一个概念存在的,官方文档中希望我们能遵循这样的概念和规范。但是没有严格的语法进行限定,因此导致许多不知道这个概念或是贪方便的开发者没有进行严格的使用。  
 在XCode6后,Objective-C新增了`NS_DESIGNATED_INITIALIZER`宏定义来进行规范。[^2]  
 使用了它之后:
@@ -79,7 +85,9 @@ Swift更加严格地定义了designated initializer和它的使用规则。 详�
 
 规则可以用这样一幅图显示:
 ![图一](/assets/posts/DesignatedInitializer/图一.png)
+
 ## 个人心得 ##
+
 在自己的开发过程中,合理地遵守和运用designated initializer会减少许多重复代码。  
 并且理解了这一个概念,对整个Cocoa框架的理解也有帮助。 例如UIViewController的Designated initializer是:
 
