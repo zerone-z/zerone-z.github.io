@@ -48,31 +48,30 @@ excerpt: '保证良好的编写Designated Initializer的风格，可以让我们
 在XCode6后,Objective-C新增了`NS_DESIGNATED_INITIALIZER`宏定义来进行规范。[^2]  
 使用了它之后:
 
-1. 该designated initializer的实现一定要调用superclass的designated initializer方法。  
- 	即：
+1. 该designated initializer的实现一定要调用superclass的designated initializer方法。
 
- 	```objc
- 	//声明：
-	- (instancetype)initWithObject:(ObjectType)object NS_DESIGNATED_INITIALIZER;
-	//实现：
-	- (instancetype)initWithNSString:(NSString*)string //子类的designated initializer
-	{   
-	     self = [super init]; //这里必须调用父类的designated initializer
-	     if (self) {
-	     ......
-	     }
-	     return self;
-	}
- 	```
+```objc
+//声明：
+- (instancetype)initWithObject:(ObjectType)object NS_DESIGNATED_INITIALIZER;
+//实现：
+- (instancetype)initWithNSString:(NSString*)string //子类的designated initializer
+{   
+    self = [super init]; //这里必须调用父类的designated initializer
+    if (self) {
+        ......
+    }
+    return self;
+}
+```
+    
 2. 没有标注为designated initializer的初始化方法都是convenience initializer。都需要调用自己的designated initializer。  
- 	即：
 
- 	```objc
- 	- (instancetype)init //没有标注的初始化方法都是convenience initializer
-	{   
-     	return [self initWithObject:@"default string"];
-	}
-	```
+```objc
+- (instancetype)init //没有标注的初始化方法都是convenience initializer
+{   
+	return [self initWithObject:@"default string"];
+}
+```
 
 如果没有符合规范,编译器会出现Warnings。  
 如果我们在一个类里采用了`NS_DESIGNATED_INITIALIZER`,则我们的所有初始化方法都要按照以上的规范进行。  
