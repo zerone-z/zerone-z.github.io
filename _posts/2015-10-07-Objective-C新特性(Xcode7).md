@@ -8,6 +8,7 @@ excerpt: '自WWDC 2015推出和开源 Swift 2.0 后，在大家羡慕使用Swift
 ---
 
 # Objective-C新特性 #
+
 ## Overview ##
 主要有三个特性：
 
@@ -29,6 +30,7 @@ Nullability并不算新特性了，从上一个版本llvm 6.1 （Xcode 6.3）就
 - **NS\_ASSUME\_NONNULL\_BEGIN & NS\_ASSUME\_NONNULL\_END**
 
 ### nullable、nonnull、null_unspecified ###
+
 关键词前面有双下划线“__”的用于修饰一个变量，仅用于指针类型上。使用方式如下：
 
 ```objc
@@ -47,14 +49,18 @@ Nullability并不算新特性了，从上一个版本llvm 6.1 （Xcode 6.3）就
 ```
 在使用过程中，使用不当会有编译警告：
 ![图一](/assets/posts/Objective-C_New_Feature/图一.png)
+
 ### null_resettable ###
+
 `null_resettable`属性专用，表示该属性永远都有非nil默认值，即使传入nil。即使你setter一个nil值，但getter到的是一个非nil值，可以为默认值。最直观的例子是UIViewController中的View属性：
 
 ```objc
 @property(null_resettable, nonatomic,strong) UIView *view;
 ```
 它可以被设成nil，但是调用getter时会触发`[self loadView]`从而创建并返回一个非nil的view。
+
 ### 审查区域（Audited Regions） ###
+
 如果需要每个属性或每个方法都去指定`nonnull`和`nullable`，是一件非常繁琐的事。苹果为了减轻我们的工作量，专门提供了两个宏：`NS_ASSUME_NONNULL_BEGIN`和`NS_ASSUME_NONNULL_END`。在这两个宏之间的代码，所有简单指针对象都被假定为`nonnull`，因此我们只需要去指定那些`nullable`的指针。如下代码所示：
 
 ```objc
@@ -81,6 +87,7 @@ NS_ASSUME_NONNULL_END
 ps: 全部使用关键字修饰的另外一个原因在于如果有一个指针使用了关键字，那么编辑器就会重新编译这个文件，对于没有使用关键字的指针报出警告，为了消除这些警告，不得不使用关键字修饰所有的指针。
 
 ## Lightweight Generics（轻量级泛型） ##
+
 泛型是程序设计语言的一种特性。允许程序员在强类型程序设计语言中编写代码时定义一些可变部分，那些部分在使用前必须作出指明。将类型参数化以达到代码复用提高软件开发工作效率的一种数据类型。使用泛型具有如下好处:
 
 - 不会强行对值类型进行装箱和拆箱，或对引用类型进行向下强制类型转换，所以性能得到提高。
@@ -99,7 +106,9 @@ Lightweight Generics 轻量级泛型，轻量是因为这是个纯编译器的�
 ```
 假如向泛型容器中加入错误的对象，编译器会警告：
 ![图二](/assets/posts/Objective-C_New_Feature/图二.png)
+
 ### 自定义泛型类 ###
+
 先看示例代码：
 
 ```objc
