@@ -13,8 +13,8 @@ locale:             zh_CN
 detach:  false
 port:    4000
 host:    127.0.0.1
+url:     "http://myzerone.com"
 baseurl: ""
-#baseurl: "http://myzerone.com" # does not include hostname
 
 # 目录结构
 source:      .

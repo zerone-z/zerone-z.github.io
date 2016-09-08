@@ -15,30 +15,30 @@ layout: compress
     <header class="header flex" role="banner">
         <div class="container animated fadeIn">
             <div class="row">
-                    <a href="{{ site.baseurl }}">
+                    <a href="{{ site.url }}{{ site.baseurl }}">
                         <img src="{{ site.logo }}" class="img-circle zoombtn animated rotateIn">
                     </a>
                     <h3 class="title">
-                        <a class="zoombtn" href="{{ site.baseurl }}">
+                        <a class="zoombtn" href="{{ site.url }}{{ site.baseurl }}">
                         	<p style="font-size:1.2rem;font-weight:300">{{ site.title }}</p>
 			            </a>
                     </h3>
                     <hr class="hr-line">
                     <h3 class="title">
-                        <a href="{{ site.baseurl }}">
+                        <a href="{{ site.url }}{{ site.baseurl }}">
                         	<p style="font-size:1rem;font-weight:300">{{ site.bio }}</p>
 			            </a>
                     </h3>
                     {% include social-links.html %}
                   <hr class="hr-line">
                   <h3 class="title">
-                         <a class="btn zoombtn" href="{{ site.baseurl }}/about">
+                         <a class="btn zoombtn" href="{{ site.url }}{{ site.baseurl }}/about">
                          {{ site.data.navigation.about.title }}
                          </a>
-                         <a class="btn zoombtn" href="{{ site.baseurl }}/posts">
+                         <a class="btn zoombtn" href="{{ site.url }}{{ site.baseurl }}/posts">
                          {{ site.data.navigation.posts.title }}
                          </a>
-                         <a class="btn zoombtn" href="{{ site.baseurl }}/projects">
+                         <a class="btn zoombtn" href="{{ site.url }}{{ site.baseurl }}/projects">
                          {{ site.data.navigation.projects.title }}
                          </a>
                  </h3>
