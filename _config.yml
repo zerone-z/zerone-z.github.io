@@ -60,7 +60,7 @@ excerpt_separator:  "\n\n"
 incremental:        false
 
 # 输出
-# permalink:     /:year/:month/:day/:title/
+permalink:     /:year/:month/:day/:title/
 paginate_path: /page:num
 timezone:      null
 
