@@ -11,7 +11,6 @@ https://commentit.io/
     {%if site.data.comments[page.id] %}
       {% assign sorted_comments = (site.data.comments[page.id] | sort: 'date') %}
       {{ sorted_comments.size }}
-    {% endif %}
     {% for c in sorted_comments %}
       <div id="commentitList{{ forloop.index }}" class="media">
         <div class="media-left">
@@ -28,12 +27,14 @@ https://commentit.io/
 
       <script type="text/javascript">
         (function() {
-            document.getElementById('disqus_thread').appendChild(document.getElementById('commentitList{{ forloop.index }}'));
+            document.getElementById('commentit_thread').appendChild(document.getElementById('commentitList{{ forloop.index }}'));
         })();
       </script>
+      {% endfor %}
     {% else %}
-      There are no comments on this post.
-    {% endfor %}
+      <!-- There are no comments on this post. -->
+    {% endif %}
+
 
     <!-- 发表评论 -->
     <noscript>Please enable JavaScript to view the comment form powered by <a href="https://commentit.io/">Comm(ent|it)</a></noscript>
@@ -46,13 +47,16 @@ https://commentit.io/
 
       /** DON'T EDIT FOLLOWING LINES **/
       (function() {
+          if (!document.getElementById('commentit_thread')) {
+              return;
+          }　
           var commentit = document.createElement('script');
           commentit.type = 'text/javascript';
           commentit.async = true;
           commentit.src = 'https://commentit.io/static/embed/dist/commentit.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(commentit);
 
-          document.getElementById('disqus_thread').appendChild(document.getElementById('commentit'));
+          document.getElementById('commentit_thread').appendChild(document.getElementById('commentit'));
       })();
     </script>
 {% endif %}

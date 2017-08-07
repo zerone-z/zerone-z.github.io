@@ -3,8 +3,6 @@ layout: post
 title:  GCD调度群组、信号量与屏障（Barrier）
 motto: null
 tags: [iOS, 多线程, GCD, 群组, 信号量, 屏障]
-commentFlag: true
-project: false
 excerpt: 'iOS中多线程GCD的使用，包括调度群组、信号量与屏障'
 ---
 

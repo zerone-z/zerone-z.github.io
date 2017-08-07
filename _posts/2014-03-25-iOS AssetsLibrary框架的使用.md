@@ -4,8 +4,6 @@ title: iOS AssetsLibrary框架的使用
 motto: null
 excerpt: AssetsLibrary框架的简单使用介绍，主要类的使用方式，实现图片／视频资源的访问
 tags: [iOS, AssetsLibrary, 图片, 视频]
-commentFlag: true
-project: false
 ---
 
 # iOS AssetsLibrary框架的使用

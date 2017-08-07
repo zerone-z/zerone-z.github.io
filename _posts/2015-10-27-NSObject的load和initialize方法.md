@@ -2,8 +2,6 @@
 layout: post
 title: NSObject的load和initialize方法
 tags: [iOS, load, initialize]
-commentFlag: true
-project: false
 excerpt: '在Objective-C的类被加载和初始化的时候，有时，我们需要在适当的情况下做一些定制处理。而这正是load和initialize方法可以帮我们做到的'
 ---
 

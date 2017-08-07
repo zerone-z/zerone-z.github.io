@@ -2,8 +2,6 @@
 layout: post
 title: Objective-C 拾遗：Designated Initializer
 tags: [iOS, Designated Initializer]
-commentFlag: true
-project: false
 excerpt: '保证良好的编写Designated Initializer的风格，可以让我们节约很多时间，同时，可以有效的规避一些潜藏的Bug'
 ---
 

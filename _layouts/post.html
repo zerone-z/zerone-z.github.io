@@ -24,11 +24,7 @@ layout: compress
                       {% include read-time.html %}
                     </p><!-- /.entry-reading-time -->
                     {% endif %}
-                    {% if page.project %}
-                    <a class="btn zoombtn" href="{{ site.url }}{{site.baseurl}}/projects/">
-                    {% else %}
                     <a class="btn zoombtn" href="{{ site.url }}{{site.baseurl}}/posts/">
-                    {% endif %}
                         <i class="fa fa-chevron-left"></i>
                     </a>
                 </div>
@@ -38,7 +34,8 @@ layout: compress
                 </div>
             </div>
         </div>
-        {% if page.commentFlag and site.commentFlag %}<section id="disqus_thread" class="animated fadeInUp"></section><!-- /#disqus_thread -->{% endif %}
+        <!-- /#commentit_thread 评论UI -->
+        <section id="commentit_thread" class="animated fadeInUp"></section>
     </header>
     {% include scripts.html %}
     {% if site.mathjax == true %}
