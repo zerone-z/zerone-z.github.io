@@ -2,8 +2,6 @@
 layout: post
 title: Objective-C新特性(Xcode7)
 tags: [iOS, Xcode7, Nullability, Lightweight Generics, __kindof]
-commentFlag: true
-project: false
 excerpt: '自WWDC 2015推出和开源 Swift 2.0 后，在大家羡慕使用Swift的新特性同时，也有许多像我这样仍需坚守Objective-C的开发者们，本篇文章就主要介绍一下Objective-C中的新特性：可空注释、轻量级泛型、__kindof'
 ---
 

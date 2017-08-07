@@ -3,8 +3,6 @@ layout: post
 title:  iOS多线程之GCD——基本概念与队列（Dispatch Queue）
 motto: null
 tags: [iOS, Objective-c, 多线程, GCD, 调度队列]
-commentFlag: true
-project: false
 excerpt: 'iOS中多线程GCD的使用，基本概念以及队列'
 ---
 

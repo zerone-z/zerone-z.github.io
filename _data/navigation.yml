@@ -10,6 +10,9 @@ posts:
         title: 博客
     allTags:
         title: 标签
+notes:
+    title: 随笔
+    url: /notes/
 projects:
     title: 项目
     url: /projects/

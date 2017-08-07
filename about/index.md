@@ -3,7 +3,6 @@ layout: page
 id: '/about'
 title: 关于
 tags: [about]
-commentFlag: true
 ---
 
 男，90后，程序员。本博客处于初创阶段，比较粗糙，望大家见谅，后面会慢慢完善。希望大家多给点建议。

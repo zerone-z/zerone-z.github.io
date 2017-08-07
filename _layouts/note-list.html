@@ -21,13 +21,18 @@ layout: compress
                         <i class="fa fa-home"></i>
                     </a>
                 </div>
+                {% if site.notes == empty %}
+                <div>
+                    {{ page.content }}
+                </div>
+                {% endif %}
                 <div class="post-list">
-                    {% for post in site.posts %}
+                    {% for note in site.notes %}
                     <ul>
                         <li class="wow fadeInLeft" data-wow-duration="1.5s">
-                            <a class="zoombtn" href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-                            <p>{{ post.excerpt }}</p>
-                            <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" class="btn zoombtn">Read More</a>
+                            <a class="zoombtn" href="{{ site.url }}{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a>
+                            <p>{{ note.excerpt }}</p>
+                            <a href="{{ site.url }}{{ site.baseurl }}{{ note.url }}" class="btn zoombtn">Read More</a>
                         </li>
                     </ul>
                     {% endfor %}
