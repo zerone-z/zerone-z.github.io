@@ -9,7 +9,7 @@ excerpt: '在Objective-C的类被加载和初始化的时候，有时，我们�
 
 # NSObject 的 load 和 initialize 方法
 
-在Objective-C中，NSObject是根类，其中有两个类方法： `load` 和 `initialize` 。  
+在Objective-C中，NSObject是根类，其中有两个类方法： load 和 initialize 。  
 
 ## Overview
 
@@ -26,14 +26,14 @@ Objective-C作为一门面向对象语言，有类和对象的概念。编译后
 
 从如上声明上来看，也许这两个方法和其它的类方法相比没什么特别。但是，这两个方法具有一定的“特殊性”，这也是这两个方法经常会被放在一起特殊提到的原因。详细请看如下几小节的整理。    
 
-## `load`和`initialize`的共同点
+## load 和 initialize 的共同点
 
  - 在不考虑开发者主动使用的情况下，系统最多会调用一次
  - 如果父类和子类都被调用，父类的调用一定在子类之前
  - 都是为了应用运行提前创建合适的运行环境
  - 都是为了应用运行提前创建合适的运行环境
 
-## `load`方法相关要点
+## load 方法相关要点
 
  - 调用时机比较早，运行环境有不确定因素。具体说来，在iOS上通常就是App启动时进行加载，但当load调用的时候，并不能保证所有类都加载完成且可用，必要时还要自己负责做auto release处理。
  - 补充上面一点，对于有依赖关系的两个库中，被依赖的类的load会优先调用。但在一个库之内，调用顺序是不确定的。
@@ -42,7 +42,7 @@ Objective-C作为一门面向对象语言，有类和对象的概念。编译后
  - Category的load也会收到调用，但顺序上在主类的load调用之后。
  - 不会直接触发initialize的调用。
 
-## `initialize`方法相关要点
+## initialize 方法相关要点
 
  - initialize的自然调用是在第一次主动使用当前类的时候（lazy，这一点和Java类的“clinit”的很像）。
  - 在initialize方法收到调用时，运行环境基本健全。
