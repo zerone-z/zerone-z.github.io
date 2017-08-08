@@ -9,7 +9,7 @@ excerpt: '在Objective-C的类被加载和初始化的时候，有时，我们�
 
 # NSObject 的 load 和 initialize 方法
 
-在Objective-C中，NSObject是根类，其中有两个类方法： load 和 initialize 。  
+在Objective-C中，NSObject是根类，其中有两个类方法： `load` 和 `initialize` 。  
 
 ## Overview
 
