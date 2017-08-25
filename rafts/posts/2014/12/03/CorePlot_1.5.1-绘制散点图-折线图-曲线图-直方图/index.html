@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8"><![endif]--><!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9"><![endif]--><!--[if gt IE 8]><!--><html class="no-js">
+<!--<![endif]--> <head> <meta charset="UTF-8"> <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <title>CorePlot_1.5.1 绘制散点图（折线图、曲线图、直方图） – myzerone</title> <meta name="description" content="记录下自己学习的过程、点滴，也为了分享自己的收获。"> <meta name="keywords" content="iOS, 移动, CorePlot, 图表, 折线图"> <!-- Twitter Cards --> <meta name="twitter:card" content="summary"> <meta name="twitter:image" content="/assets/img/logo.png"> <meta name="twitter:title" content="CorePlot_1.5.1 绘制散点图（折线图、曲线图、直方图）"> <meta name="twitter:description" content="使用CorePlot绘制折线图、曲线图、直方图、散点图"> <!-- Open Graph --> <meta property="og:locale" content="zh_CN"> <meta property="og:type" content="article"> <meta property="og:title" content="CorePlot_1.5.1 绘制散点图（折线图、曲线图、直方图）"> <meta property="og:description" content="使用CorePlot绘制折线图、曲线图、直方图、散点图"> <meta property="og:url" content="/posts/2014/12/03/CorePlot_1.5.1-%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE-%E6%8A%98%E7%BA%BF%E5%9B%BE-%E6%9B%B2%E7%BA%BF%E5%9B%BE-%E7%9B%B4%E6%96%B9%E5%9B%BE/"> <meta property="og:site_name" content="myzerone"> <meta property="og:image" content="/assets/img/logo.png"> <!-- Webmaster Tools verfication --> <meta name="google-site-verification" content="Oq-I-tGK8y1zoHLnZQnfe7rH6rkjqyjqZfBtvADe2uU"> <link rel="canonical" href="/posts/2014/12/03/CorePlot_1.5.1-%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE-%E6%8A%98%E7%BA%BF%E5%9B%BE-%E6%9B%B2%E7%BA%BF%E5%9B%BE-%E7%9B%B4%E6%96%B9%E5%9B%BE/"> <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="myzerone Feed"> <!-- Handheld --> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- CSS --> <link rel="stylesheet" href="/assets/css/main.css"> <!-- JS --> <script src="/assets/js/modernizr-3.3.1.custom.min.js"></script> <!-- Favicons --> <link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon-precomposed.png"> <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-icon-72x72.png"> <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-icon-114x114.png"> <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-icon-144x144.png"> <link rel="shortcut icon" type="image/png" href="/favicon.png"> <link rel="shortcut icon" href="/favicon.ico"> <!-- Background Image --> <style type="text/css">body {background-image:url(/assets/img/placeholder-big.jpg); background-repeat: no-repeat; background-size: cover; }</style> <!-- Post Feature Image --> </head> <body> <nav id="dl-menu" class="dl-menuwrapper" role="navigation"> <button class="dl-trigger">Open Menu</button> <ul class="dl-menu"> <!-- 首页 --> <li> <a href="/">首页</a> </li> <!-- 关于 --> <li> <a href="#">关于</a> <ul class="dl-submenu"> <li> <img src="/assets/img/logo.png" alt="myzerone photo" class="author-photo"> <h4>myzerone</h4> <p>记录下自己学习的过程、点滴，也为了分享自己的收获。</p> </li> <li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li> <li> <a href="mailto:myzerone@myzerone.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-envelope-square"></i> Email</a> </li> <li> <a href="http://github.com/myzerone" target="_blank" rel="noopener noreferrer"><i class="fa fa-fw fa-github"></i> Github</a> </li> </ul>
+<!-- /.dl-submenu --> </li> <!-- 博客 --> <li> <a href="#">博客</a> <ul class="dl-submenu"> <li><a href="/posts/">博客</a></li> <li><a href="/tags/">标签</a></li> </ul> </li> <!-- 随笔 --> <li> <a href="/notes/" rel="noopener noreferrer">随笔</a> </li> <!-- 项目 --> <li> <a href="/projects/" rel="noopener noreferrer">项目</a> </li> </ul>
+<!-- /.dl-menu --> </nav><!-- /.dl-menuwrapper --> <!-- Header --> <header class="header" role="banner"> <div class="wrapper animated fadeIn"> <div class="content"> <div class="post-title "> <h1>CorePlot_1.5.1 绘制散点图（折线图、曲线图、直方图）</h1> <h4>03 Dec 2014</h4> <p class="reading-time"> <i class="fa fa-clock-o"></i> Reading time ~7 minutes </p>
+<!-- /.entry-reading-time --> <a class="btn zoombtn" href="/posts/"> <i class="fa fa-chevron-left"></i> </a> </div> <h1 id="id-section">前言</h1> <p>CorePlot提供了散点图（CPTScatterPlot）的绘制，包括：折线图、曲线图、直方图。如下图所示：</p> <p><img src="/assets/posts/CorePlotScatter/1.jpg" alt="散点图" height="220px" width="300px"> <img src="/assets/posts/CorePlotScatter/2.jpg" alt="折线图" height="220px" width="300px"> <img src="/assets/posts/CorePlotScatter/3.jpg" alt="曲线图" height="220px" width="300px"> <img src="/assets/posts/CorePlotScatter/4.jpg" alt="直方图" height="220px" width="300px"></p> <p>CorePlot框架自身提供了线条样式、文本样式及填充色的设置。CPTMutableLineStyle／CPTLineStyle用于设置线条样式；CPTMutableTextStyle／CPTTextStyle用于设置文本样式；CPTFill用于设置填充色。</p> <p>数据源及x轴的标签：</p> <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">dataSource</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableArray</span> <span class="nf">arrayWithCapacity</span><span class="p">:</span><span class="mi">10</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">dataSource</span> <span class="nf">addObject</span><span class="p">:</span><span class="err">@</span><span class="p">(</span><span class="n">arc4random</span><span class="p">()</span><span class="o">%</span><span class="mi">10</span><span class="p">)];</span>
+<span class="p">}</span>
+<span class="n">self</span><span class="p">.</span><span class="n">dataSource</span> <span class="o">=</span> <span class="n">dataSource</span><span class="p">;</span>
+<span class="n">_coordinatesX</span> <span class="o">=</span> <span class="p">@[</span><span class="s">@"第一次"</span><span class="p">,</span><span class="s">@"第二次"</span><span class="p">,</span><span class="s">@"第三次"</span><span class="p">,</span><span class="s">@"第四次"</span><span class="p">,</span><span class="s">@"第五次"</span><span class="p">,</span><span class="s">@"第六次"</span><span class="p">,</span><span class="s">@"第七次"</span><span class="p">,</span><span class="s">@"第八次"</span><span class="p">,</span><span class="s">@"第九次"</span><span class="p">,</span><span class="s">@"第十次"</span><span class="p">];</span>
+</code></pre></div> <h1 id="id-viewcptgraphhostingview">宿主View（CPTGraphHostingView）的创建</h1> <p>CorePlot中的所有图表都是绘制在宿主View中的，其他普通View无法绘制图标。CPTGraphHostingView继承自UIView。</p> <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma mark 创建宿主HostView
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">createHostView</span>
+<span class="p">{</span>
+    <span class="c1">//  图形要放在CPTGraphHostingView宿主中，因为UIView无法加载CPTGraph
+</span>    <span class="n">_hostView</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTGraphHostingView</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFrame</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">bounds</span><span class="p">];</span>
+    <span class="c1">//  默认值：NO，设置为YES可以减少GPU的使用，但是渲染图形的时候会变慢
+</span>    <span class="n">_hostView</span><span class="p">.</span><span class="n">collapsesLayers</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+    <span class="c1">//  允许捏合缩放 默认值：YES
+</span>    <span class="n">_hostView</span><span class="p">.</span><span class="n">allowPinchScaling</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+    <span class="c1">//  背景色 默认值：clearColor
+</span>    <span class="n">_hostView</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">whiteColor</span><span class="p">];</span>
+
+    <span class="c1">// 添加到View中
+</span>    <span class="p">[</span><span class="n">self</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">_hostView</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div> <h1 id="id-cptxygraph">画布（CPTXYGraph）的创建</h1> <p>CPTXYGraph继承自CPTGraph。CPTXYGraph是绘制带有x、y轴坐标的图标。CPTGraph管理绘图空间、绘图区域、坐标轴、标签、标题等的创建。</p> <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma mark 创建图表，用于显示的画布
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">createGraph</span>
+<span class="p">{</span>
+    <span class="c1">// 基于xy轴的图表创建
+</span>    <span class="n">CPTXYGraph</span> <span class="o">*</span><span class="n">graph</span><span class="o">=</span><span class="p">[[</span><span class="n">CPTXYGraph</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFrame</span><span class="p">:</span><span class="n">_hostView</span><span class="p">.</span><span class="n">bounds</span><span class="p">];</span>
+    <span class="c1">// 使宿主视图的hostedGraph与CPTGraph关联
+</span>    <span class="n">_hostView</span><span class="p">.</span><span class="n">hostedGraph</span> <span class="o">=</span> <span class="n">graph</span><span class="p">;</span>
+
+    <span class="c1">// 设置主题，类似于皮肤
+</span>    <span class="p">{</span>
+        <span class="c1">//CPTTheme *theme = [CPTTheme themeNamed:kCPTSlateTheme];
+</span>        <span class="c1">//[graph applyTheme:theme];
+</span>    <span class="p">}</span>
+
+    <span class="c1">// 标题设置
+</span>    <span class="p">{</span>
+        <span class="n">graph</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="s">@"标题：曲线图"</span><span class="p">;</span>
+        <span class="c1">// 标题对齐于图框的位置，可以用CPTRectAnchor枚举类型，指定标题向图框的4角、4边（中点）对齐标题位置 默认值：CPTRectAnchorTop（顶部居中）
+</span>        <span class="n">graph</span><span class="p">.</span><span class="n">titlePlotAreaFrameAnchor</span> <span class="o">=</span> <span class="n">CPTRectAnchorTop</span><span class="p">;</span>
+        <span class="c1">// 标题对齐时的偏移距离（相对于titlePlotAreaFrameAnchor的偏移距离）默认值：CGPointZero
+</span>        <span class="n">graph</span><span class="p">.</span><span class="n">titleDisplacement</span> <span class="o">=</span> <span class="n">CGPointZero</span><span class="p">;</span>
+        <span class="c1">// 标题文本样式 默认值：nil
+</span>        <span class="n">CPTMutableTextStyle</span> <span class="o">*</span><span class="n">textStyle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTMutableTextStyle</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+        <span class="n">textStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+        <span class="n">textStyle</span><span class="p">.</span><span class="n">textAlignment</span> <span class="o">=</span> <span class="n">CPTTextAlignmentLeft</span><span class="p">;</span>
+        <span class="n">graph</span><span class="p">.</span><span class="n">titleTextStyle</span> <span class="o">=</span> <span class="n">textStyle</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// CPGGraph内边距，默认值：20.0f
+</span>    <span class="p">{</span>
+        <span class="n">graph</span><span class="p">.</span><span class="n">paddingLeft</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">graph</span><span class="p">.</span><span class="n">paddingTop</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">graph</span><span class="p">.</span><span class="n">paddingRight</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">graph</span><span class="p">.</span><span class="n">paddingBottom</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// CPTPlotAreaFrame绘图区域设置
+</span>    <span class="p">{</span>
+        <span class="c1">// 内边距设置，默认值：0.0f
+</span>        <span class="n">graph</span><span class="p">.</span><span class="n">plotAreaFrame</span><span class="p">.</span><span class="n">paddingLeft</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">graph</span><span class="p">.</span><span class="n">plotAreaFrame</span><span class="p">.</span><span class="n">paddingTop</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">graph</span><span class="p">.</span><span class="n">plotAreaFrame</span><span class="p">.</span><span class="n">paddingRight</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">graph</span><span class="p">.</span><span class="n">plotAreaFrame</span><span class="p">.</span><span class="n">paddingBottom</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="c1">// 边框样式设置 默认值：nil
+</span>        <span class="n">graph</span><span class="p">.</span><span class="n">plotAreaFrame</span><span class="p">.</span><span class="n">borderLineStyle</span><span class="o">=</span><span class="nb">nil</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div> <p>CorePlot为CPTGraph提供了几种主题可供使用，有：kCPTDarkGradientTheme、kCPTPlainBlackTheme、kCPTPlainWhiteTheme、kCPTSlateTheme、kCPTStocksTheme。每种可以切换主题试试有什么不同的效果。内边距（paddingLeft、paddingTop、paddingRight、paddingBottom）来自于父类CPTLayer。CPTLayer是CorePlot中所有层（Layer）的父类，继承于CALayer。绘图边框（plotAreaFrame）中关联了绘图区域（CPTPlotArea）、坐标系（CPTAxisSet）。</p> <h1 id="id-cptxyplotspace">绘图空间（CPTXYPlotSpace）的创建</h1> <p>CPTXYPlotSpace是CPTPlotSpace的子类。绘图空间定义了坐标空间和绘制空间的映射关系。CPTXYPlotSpace则定义了在二维（x、y轴）中的映射关系。</p> <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma mark 创建绘图空间
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">createPlotSpace</span>
+<span class="p">{</span>
+    <span class="n">CPTXYPlotSpace</span> <span class="o">*</span><span class="n">plotSpace</span> <span class="o">=</span> <span class="p">(</span><span class="n">CPTXYPlotSpace</span> <span class="o">*</span><span class="p">)</span><span class="n">_hostView</span><span class="p">.</span><span class="n">hostedGraph</span><span class="p">.</span><span class="n">defaultPlotSpace</span><span class="p">;</span>
+    <span class="c1">// 绘图空间是否允许与用户交互 默认值：NO
+</span>    <span class="n">plotSpace</span><span class="p">.</span><span class="n">allowsUserInteraction</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+    <span class="c1">// 委托事件
+</span>    <span class="n">plotSpace</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+
+    <span class="c1">//设置移动时的停止动画
+</span>    <span class="p">{</span>
+        <span class="c1">// 这些参数保持默认即可  变化不大
+</span>        <span class="n">plotSpace</span><span class="p">.</span><span class="n">allowsMomentum</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+        <span class="n">plotSpace</span><span class="p">.</span><span class="n">momentumAnimationCurve</span> <span class="o">=</span> <span class="n">CPTAnimationCurveCubicIn</span><span class="p">;</span>
+        <span class="n">plotSpace</span><span class="p">.</span><span class="n">bounceAnimationCurve</span> <span class="o">=</span> <span class="n">CPTAnimationCurveBackIn</span><span class="p">;</span>
+        <span class="n">plotSpace</span><span class="p">.</span><span class="n">momentumAcceleration</span> <span class="o">=</span> <span class="mi">20000</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 可显示大小 一屏内横轴／纵轴的显示范围
+</span>    <span class="p">{</span>
+        <span class="c1">// 横轴
+</span>        <span class="p">{</span>
+            <span class="c1">// location表示坐标的显示起始值，length表示要显示的长度 类似于NSRange
+</span>            <span class="n">CPTMutablePlotRange</span> <span class="o">*</span><span class="n">xRange</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTMutablePlotRange</span> <span class="nf">plotRangeWithLocation</span><span class="p">:</span><span class="n">CPTDecimalFromCGFloat</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="nf">length</span><span class="p">:</span><span class="n">CPTDecimalFromCGFloat</span><span class="p">(</span><span class="n">_coordinatesX</span><span class="p">.</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)];</span>
+            <span class="c1">// 横轴显示的收缩／扩大范围 1：不改变  &lt;1:收缩范围  &gt;1:扩大范围
+</span>            <span class="p">[</span><span class="n">xRange</span> <span class="nf">expandRangeByFactor</span><span class="p">:</span><span class="n">CPTDecimalFromCGFloat</span><span class="p">(</span><span class="mi">1</span><span class="p">)];</span>
+
+            <span class="n">plotSpace</span><span class="p">.</span><span class="n">xRange</span> <span class="o">=</span> <span class="n">xRange</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 纵轴
+</span>        <span class="p">{</span>
+            <span class="n">CPTMutablePlotRange</span> <span class="o">*</span><span class="n">yRange</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTMutablePlotRange</span> <span class="nf">plotRangeWithLocation</span><span class="p">:</span><span class="n">CPTDecimalFromCGFloat</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="nf">length</span><span class="p">:</span><span class="n">CPTDecimalFromCGFloat</span><span class="p">(</span><span class="mi">11</span><span class="p">)];</span>
+            <span class="p">[</span><span class="n">yRange</span> <span class="nf">expandRangeByFactor</span><span class="p">:</span><span class="n">CPTDecimalFromCGFloat</span><span class="p">(</span><span class="mi">1</span><span class="p">)];</span>
+
+            <span class="n">plotSpace</span><span class="p">.</span><span class="n">yRange</span> <span class="o">=</span> <span class="n">yRange</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 绘图空间的最大显示空间，滚动范围
+</span>    <span class="p">{</span>
+        <span class="n">CPTMutablePlotRange</span> <span class="o">*</span><span class="n">xGlobalRange</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTMutablePlotRange</span> <span class="nf">plotRangeWithLocation</span><span class="p">:</span><span class="n">CPTDecimalFromCGFloat</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="nf">length</span><span class="p">:</span><span class="n">CPTDecimalFromCGFloat</span><span class="p">(</span><span class="n">_coordinatesX</span><span class="p">.</span><span class="n">count</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)];</span>
+
+        <span class="n">CPTMutablePlotRange</span> <span class="o">*</span><span class="n">yGlobalRange</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTMutablePlotRange</span> <span class="nf">plotRangeWithLocation</span><span class="p">:</span><span class="n">CPTDecimalFromCGFloat</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="nf">length</span><span class="p">:</span><span class="n">CPTDecimalFromCGFloat</span><span class="p">(</span><span class="mi">16</span><span class="p">)];</span>
+
+        <span class="n">plotSpace</span><span class="p">.</span><span class="n">globalXRange</span> <span class="o">=</span> <span class="n">xGlobalRange</span><span class="p">;</span>
+        <span class="n">plotSpace</span><span class="p">.</span><span class="n">globalYRange</span> <span class="o">=</span> <span class="n">yGlobalRange</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div> <p>需着重理解xRange／yRange于globalXRange／globalYRange之间的区别。xRange／yRange是指在视图中显示的范围，人们可以看到的范围。globalXRange／globalYRange是指绘图空间最大显示范围（滚动范围），可以通过手指拖动看到其他的范围。xRange／yRange类似于UIScorllView中frame的size，globalXRange／globalYRange类似于UIScrollView中的contentSize。</p> <h1 id="id-cptplotspace">CPTPlotSpace的委托事件</h1> <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma mark 替换移动坐标
+</span><span class="k">-</span> <span class="p">(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nf">plotSpace</span><span class="p">:(</span><span class="n">CPTPlotSpace</span> <span class="o">*</span><span class="p">)</span><span class="nv">space</span> <span class="nf">willDisplaceBy</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">proposedDisplacementVector</span>
+<span class="p">{</span>
+<span class="c1">//    NSLog(@"\n============willDisplaceBy==========\n");
+//    NSLog(@"原始的将要移动的坐标:%@", NSStringFromCGPoint(proposedDisplacementVector));
+//
+</span>    <span class="k">return</span> <span class="n">proposedDisplacementVector</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#pragma mark 是否允许缩放
+</span><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">plotSpace</span><span class="p">:(</span><span class="n">CPTPlotSpace</span> <span class="o">*</span><span class="p">)</span><span class="nv">space</span> <span class="nf">shouldScaleBy</span><span class="p">:(</span><span class="n">CGFloat</span><span class="p">)</span><span class="nv">interactionScale</span> <span class="nf">aboutPoint</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">interactionPoint</span>
+<span class="p">{</span>
+<span class="c1">//    NSLog(@"\n============shouldScaleBy==========\n");
+//    NSLog(@"缩放比例:%lf", interactionScale);
+//    NSLog(@"缩放的中心点:%@", NSStringFromCGPoint(interactionPoint));
+</span>    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#pragma mark 缩放绘图空间时调用，设置当前显示的大小
+</span><span class="k">-</span> <span class="p">(</span><span class="n">CPTPlotRange</span> <span class="o">*</span><span class="p">)</span><span class="nf">plotSpace</span><span class="p">:(</span><span class="n">CPTPlotSpace</span> <span class="o">*</span><span class="p">)</span><span class="nv">space</span> <span class="nf">willChangePlotRangeTo</span><span class="p">:(</span><span class="n">CPTPlotRange</span> <span class="o">*</span><span class="p">)</span><span class="nv">newRange</span> <span class="nf">forCoordinate</span><span class="p">:(</span><span class="n">CPTCoordinate</span><span class="p">)</span><span class="nv">coordinate</span>
+<span class="p">{</span>
+<span class="c1">//    NSLog(@"\n============willChangePlotRangeTo==========\n");
+//    NSLog(@"坐标类型:%d", coordinate);
+//    // CPTPlotRange 有比较方法 containsRange:
+//    NSLog(@"原始的坐标空间:location:%@,length:%@", [NSDecimalNumber decimalNumberWithDecimal:newRange.location].stringValue, [NSDecimalNumber decimalNumberWithDecimal:newRange.length].stringValue);
+//
+</span>    <span class="k">return</span> <span class="n">newRange</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#pragma mark 结束缩放绘图空间时调用
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">plotSpace</span><span class="p">:(</span><span class="n">CPTPlotSpace</span> <span class="o">*</span><span class="p">)</span><span class="nv">space</span> <span class="nf">didChangePlotRangeForCoordinate</span><span class="p">:(</span><span class="n">CPTCoordinate</span><span class="p">)</span><span class="nv">coordinate</span>
+<span class="p">{</span>
+<span class="c1">//    NSLog(@"\n============didChangePlotRangeForCoordinate==========\n");
+//    NSLog(@"坐标类型:%d", coordinate);
+</span><span class="p">}</span>
+
+<span class="cp">#pragma mark 开始按下 point是在hostedGraph中的坐标
+</span><span class="k">-</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">plotSpace</span><span class="p">:(</span><span class="n">CPTPlotSpace</span> <span class="o">*</span><span class="p">)</span><span class="nv">space</span> <span class="nf">shouldHandlePointingDeviceDownEvent</span><span class="p">:(</span><span class="n">CPTNativeEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span> <span class="nf">atPoint</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">point</span>
+<span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"</span><span class="se">\n\n\n</span><span class="s">============shouldHandlePointingDeviceDownEvent==========</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"坐标点：%@"</span><span class="p">,</span> <span class="n">NSStringFromCGPoint</span><span class="p">(</span><span class="n">point</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#pragma mark 开始拖动 point是在hostedGraph中的坐标
+</span><span class="k">-</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">plotSpace</span><span class="p">:(</span><span class="n">CPTPlotSpace</span> <span class="o">*</span><span class="p">)</span><span class="nv">space</span> <span class="nf">shouldHandlePointingDeviceDraggedEvent</span><span class="p">:(</span><span class="n">CPTNativeEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span> <span class="nf">atPoint</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">point</span>
+<span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"</span><span class="se">\n\n\n</span><span class="s">============shouldHandlePointingDeviceDraggedEvent==========</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"坐标点：%@"</span><span class="p">,</span> <span class="n">NSStringFromCGPoint</span><span class="p">(</span><span class="n">point</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#pragma mark 松开 point是在hostedGraph中的坐标
+</span><span class="k">-</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">plotSpace</span><span class="p">:(</span><span class="n">CPTPlotSpace</span> <span class="o">*</span><span class="p">)</span><span class="nv">space</span> <span class="nf">shouldHandlePointingDeviceUpEvent</span><span class="p">:(</span><span class="n">CPTNativeEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span> <span class="nf">atPoint</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">point</span>
+<span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"</span><span class="se">\n\n\n</span><span class="s">============shouldHandlePointingDeviceUpEvent==========</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"坐标点：%@"</span><span class="p">,</span> <span class="n">NSStringFromCGPoint</span><span class="p">(</span><span class="n">point</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#pragma mark 取消，如：来电时产生的取消事件
+</span><span class="k">-</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">plotSpace</span><span class="p">:(</span><span class="n">CPTPlotSpace</span> <span class="o">*</span><span class="p">)</span><span class="nv">space</span> <span class="nf">shouldHandlePointingDeviceCancelledEvent</span><span class="p">:(</span><span class="n">CPTNativeEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span>
+<span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"</span><span class="se">\n\n\n</span><span class="s">============shouldHandlePointingDeviceCancelledEvent==========</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div> <h1 id="id-cptxyaxisset">坐标系（CPTXYAxisSet）的创建</h1> <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma mark 创建坐标
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">createAxis</span>
+<span class="p">{</span>
+    <span class="c1">// 轴线样式
+</span>    <span class="n">CPTMutableLineStyle</span> <span class="o">*</span><span class="n">axisLineStyle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTMutableLineStyle</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+    <span class="n">axisLineStyle</span><span class="p">.</span><span class="n">lineWidth</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">axisLineStyle</span><span class="p">.</span><span class="n">lineColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTColor</span> <span class="nf">blackColor</span><span class="p">];</span>
+
+    <span class="c1">// 标题样式
+</span>    <span class="n">CPTMutableTextStyle</span> <span class="o">*</span><span class="n">titelStyle</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTMutableTextStyle</span> <span class="nf">textStyle</span><span class="p">];</span>
+    <span class="n">titelStyle</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTColor</span> <span class="nf">redColor</span><span class="p">];</span>
+    <span class="n">titelStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+
+    <span class="c1">// 主刻度线样式
+</span>    <span class="n">CPTMutableLineStyle</span> <span class="o">*</span><span class="n">majorLineStyle</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTMutableLineStyle</span> <span class="nf">lineStyle</span><span class="p">];</span>
+    <span class="n">majorLineStyle</span><span class="p">.</span><span class="n">lineColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTColor</span> <span class="nf">purpleColor</span><span class="p">];</span>
+
+    <span class="c1">// 细分刻度线样式
+</span>    <span class="n">CPTMutableLineStyle</span> <span class="o">*</span><span class="n">minorLineStyle</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTMutableLineStyle</span> <span class="nf">lineStyle</span><span class="p">];</span>
+    <span class="n">minorLineStyle</span><span class="p">.</span><span class="n">lineColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTColor</span> <span class="nf">blueColor</span><span class="p">];</span>
+
+    <span class="c1">// 轴标签样式
+</span>    <span class="n">CPTMutableTextStyle</span> <span class="o">*</span><span class="n">axisTextStyle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTMutableTextStyle</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+    <span class="n">axisTextStyle</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTColor</span> <span class="nf">blueColor</span><span class="p">];</span>
+    <span class="n">axisTextStyle</span><span class="p">.</span><span class="n">fontName</span> <span class="o">=</span> <span class="s">@"Helvetica-Bold"</span><span class="p">;</span>
+    <span class="n">axisTextStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+
+    <span class="c1">// 轴标签样式
+</span>    <span class="n">CPTMutableTextStyle</span> <span class="o">*</span><span class="n">axisLabelTextStyle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTMutableTextStyle</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+    <span class="n">axisLabelTextStyle</span><span class="p">.</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">CPTColor</span> <span class="nf">greenColor</span><span class="p">];</span>
+    <span class="n">axisLabelTextStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">17</span><span class="p">);</span>
+
+    <span class="c1">// 坐标系
+</span>    <span class="n">CPTXYAxisSet</span> <span class="o">*</span><span class="n">axis</span> <span class="o">=</span> <span class="p">(</span><span class="n">CPTXYAxisSet</span> <span class="o">*</span><span class="p">)</span><span class="n">_hostView</span><span class="p">.</span><span class="n">hostedGraph</span><span class="p">.</span><span class="n">axisSet</span><span class="p">;</span>
+
+    <span class="c1">//X轴设置
+</span>    <span class="p">{</span>
+        <span class="c1">// 获取X轴线
+</span>        <span class="n">CPTXYAxis</span> <span class="o">*</span><span class="n">xAxis</span> <span class="o">=</span> <span class="n">axis</span><span class="p">.</span><span class="n">xAxis</span><span class="p">;</span>
+
+        <span class="c1">// 轴线设置
+</span>        <span class="n">xAxis</span><span class="p">.</span><span class="n">axisLineStyle</span> <span class="o">=</span> <span class="n">axisLineStyle</span><span class="p">;</span>
+
+        <span class="c1">// 显示的刻度范围 默认值：nil
+</span>        <span class="n">xAxis</span><span class="p">.</span><span class="n">visibleRange</span><span class="o">=</span><span class="p">[</span><span class="n">CPTPlotRange</span> <span class="nf">plotRangeWithLocation</span><span class="p">:</span><span class="n">CPTDecimalFromFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="nf">length</span><span class="p">:</span><span class="n">CPTDecimalFromFloat</span><span class="p">(</span><span class="n">_coordinatesX</span><span class="p">.</span><span class="n">count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)];</span>
+
+        <span class="c1">// 标题设置
+</span>        <span class="p">{</span>
+            <span class="n">xAxis</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span><span class="err">@</span> <span class="s">"X轴"</span><span class="p">;</span>
+            <span class="c1">// 文本样式
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">titleTextStyle</span> <span class="o">=</span> <span class="n">titelStyle</span><span class="p">;</span>
+            <span class="c1">// 位置 与刻度有关,
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">titleLocation</span> <span class="o">=</span> <span class="n">CPTDecimalFromFloat</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+            <span class="c1">// 方向设置
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">titleDirection</span> <span class="o">=</span> <span class="n">CPTSignNegative</span><span class="p">;</span>
+            <span class="c1">// 偏移量,在方向上的偏移量
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">titleOffset</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 位置设置
+</span>        <span class="p">{</span>
+            <span class="c1">// 固定坐标 默认值：nil
+</span>            <span class="c1">//xAxis.axisConstraints = [CPTConstraints constraintWithLowerOffset:50.0];
+</span>            <span class="c1">// 坐标原点所在位置，默认值：CPTDecimalFromInteger(0)（在Y轴的0点位置）
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">orthogonalCoordinateDecimal</span> <span class="o">=</span> <span class="n">CPTDecimalFromFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 主刻度线设置
+</span>        <span class="p">{</span>
+            <span class="c1">// X轴大刻度线，线型设置
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">majorTickLineStyle</span> <span class="o">=</span> <span class="n">majorLineStyle</span><span class="p">;</span>
+            <span class="c1">// 刻度线的长度
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">majorTickLength</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+            <span class="c1">// 刻度线位置
+</span>            <span class="n">NSMutableSet</span> <span class="o">*</span><span class="n">majorTickLocations</span> <span class="o">=</span><span class="p">[</span><span class="n">NSMutableSet</span> <span class="nf">setWithCapacity</span><span class="p">:</span><span class="n">_coordinatesX</span><span class="p">.</span><span class="n">count</span><span class="p">];</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span> <span class="mi">0</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;</span> <span class="n">_coordinatesX</span><span class="p">.</span><span class="n">count</span> <span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="p">[</span><span class="n">majorTickLocations</span> <span class="nf">addObject</span><span class="p">:[</span><span class="n">NSNumber</span> <span class="nf">numberWithInt</span><span class="p">:(</span><span class="n">i</span><span class="p">)]];</span>
+            <span class="p">}</span>
+            <span class="n">xAxis</span><span class="p">.</span><span class="n">majorTickLocations</span> <span class="o">=</span> <span class="n">majorTickLocations</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 细分刻度线设置
+</span>        <span class="p">{</span>
+            <span class="c1">// 刻度线的长度
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">minorTickLength</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+            <span class="c1">// 刻度线样式
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">minorTickLineStyle</span> <span class="o">=</span> <span class="n">minorLineStyle</span><span class="p">;</span>
+            <span class="c1">// 刻度线位置
+</span>            <span class="n">NSInteger</span> <span class="n">minorTicksPerInterval</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+            <span class="n">CGFloat</span> <span class="n">minorIntervalLength</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="n">minorTicksPerInterval</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="n">NSMutableSet</span> <span class="o">*</span><span class="n">minorTickLocations</span> <span class="o">=</span><span class="p">[</span><span class="n">NSMutableSet</span> <span class="nf">setWithCapacity</span><span class="p">:(</span><span class="n">_coordinatesX</span><span class="p">.</span><span class="n">count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">minorTicksPerInterval</span><span class="p">];</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span> <span class="mi">0</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;</span> <span class="n">_coordinatesX</span><span class="p">.</span><span class="n">count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">minorTicksPerInterval</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="p">[</span><span class="n">minorTickLocations</span> <span class="nf">addObject</span><span class="p">:[</span><span class="n">NSNumber</span> <span class="nf">numberWithFloat</span><span class="p">:(</span><span class="n">i</span> <span class="o">+</span> <span class="n">minorIntervalLength</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))]];</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">xAxis</span><span class="p">.</span><span class="n">minorTickLocations</span> <span class="o">=</span> <span class="n">minorTickLocations</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 网格线设置
+</span>        <span class="p">{</span>
+            <span class="c1">//xAxis.majorGridLineStyle = majorLineStyle;
+</span>            <span class="c1">//xAxis.minorGridLineStyle = minorLineStyle;
+</span>            <span class="c1">//xAxis.gridLinesRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0) length:CPTDecimalFromFloat(9)];
+</span>        <span class="p">}</span>
+
+        <span class="c1">// 轴标签设置
+</span>        <span class="p">{</span>
+            <span class="c1">//清除默认的方案，使用自定义的轴标签、刻度线；
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">labelingPolicy</span> <span class="o">=</span> <span class="n">CPTAxisLabelingPolicyNone</span><span class="p">;</span>
+            <span class="c1">// 轴标签偏移量
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">labelOffset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="n">f</span><span class="p">;</span>
+            <span class="c1">// 轴标签样式
+</span>            <span class="n">xAxis</span><span class="p">.</span><span class="n">labelTextStyle</span> <span class="o">=</span> <span class="n">axisTextStyle</span><span class="p">;</span>
+
+            <span class="c1">// 存放自定义的轴标签
+</span>            <span class="n">NSMutableSet</span> <span class="o">*</span><span class="n">xAxisLabels</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableSet</span> <span class="nf">setWithCapacity</span><span class="p">:</span><span class="n">_coordinatesX</span><span class="p">.</span><span class="n">count</span><span class="p">];</span>
+            <span class="k">for</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">i</span><span class="o">=</span> <span class="mi">0</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;</span> <span class="n">_coordinatesX</span><span class="p">.</span><span class="n">count</span> <span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">CPTAxisLabel</span> <span class="o">*</span><span class="n">newLabel</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTAxisLabel</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithText</span><span class="p">:</span><span class="n">_coordinatesX</span><span class="p">[</span><span class="nf">i</span><span class="p">]</span> <span class="nf">textStyle</span><span class="p">:</span><span class="n">axisLabelTextStyle</span><span class="p">];</span>
+                <span class="c1">// 刻度线的位置
+</span>                <span class="n">newLabel</span><span class="p">.</span><span class="n">tickLocation</span> <span class="o">=</span> <span class="n">CPTDecimalFromInt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+                <span class="n">newLabel</span><span class="p">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">xAxis</span><span class="p">.</span><span class="n">labelOffset</span> <span class="o">+</span> <span class="n">xAxis</span><span class="p">.</span><span class="n">majorTickLength</span><span class="p">;</span>
+                <span class="n">newLabel</span><span class="p">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="n">M_PI_4</span><span class="p">;</span>
+                <span class="p">[</span><span class="n">xAxisLabels</span> <span class="nf">addObject</span> <span class="p">:</span><span class="n">newLabel</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="n">xAxis</span><span class="p">.</span><span class="n">axisLabels</span> <span class="o">=</span> <span class="n">xAxisLabels</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Y轴设置
+</span>    <span class="p">{</span>
+        <span class="c1">// 获取Y轴坐标
+</span>        <span class="n">CPTXYAxis</span> <span class="o">*</span><span class="n">yAxis</span> <span class="o">=</span> <span class="n">axis</span><span class="p">.</span><span class="n">yAxis</span><span class="p">;</span>
+
+        <span class="c1">// 委托事件
+</span>        <span class="n">yAxis</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+
+        <span class="c1">//轴线样式
+</span>        <span class="n">yAxis</span><span class="p">.</span><span class="n">axisLineStyle</span> <span class="o">=</span> <span class="n">axisLineStyle</span><span class="p">;</span>
+
+        <span class="c1">//显示的刻度
+</span>        <span class="n">yAxis</span><span class="p">.</span><span class="n">visibleRange</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTPlotRange</span> <span class="nf">plotRangeWithLocation</span><span class="p">:</span><span class="n">CPTDecimalFromFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">)</span> <span class="nf">length</span><span class="p">:</span><span class="n">CPTDecimalFromFloat</span><span class="p">(</span><span class="mi">9</span><span class="p">)];</span>
+
+        <span class="c1">// 标题设置
+</span>        <span class="p">{</span>
+            <span class="n">yAxis</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="s">@"Y轴"</span><span class="p">;</span>
+            <span class="c1">// 文本样式
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">titleTextStyle</span> <span class="o">=</span> <span class="n">titelStyle</span><span class="p">;</span>
+            <span class="c1">// 位置 与刻度有关,
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">titleLocation</span> <span class="o">=</span> <span class="n">CPTDecimalFromFloat</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">4</span><span class="p">);</span>
+            <span class="c1">// 方向设置
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">titleDirection</span> <span class="o">=</span> <span class="n">CPTSignNegative</span><span class="p">;</span>
+            <span class="c1">// 偏移量,在方向上的偏移量
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">titleOffset</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">18</span><span class="p">);</span>
+            <span class="c1">// 旋转方向
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">titleRotation</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="n">M_PI_2</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 位置设置
+</span>        <span class="p">{</span>
+            <span class="c1">// 获取X轴原点即0点的坐标
+</span>            <span class="n">CPTXYAxis</span> <span class="o">*</span><span class="n">xAxis</span> <span class="o">=</span> <span class="n">axis</span><span class="p">.</span><span class="n">xAxis</span><span class="p">;</span>
+            <span class="n">CGPoint</span> <span class="n">zeroPoint</span> <span class="o">=</span> <span class="p">[</span><span class="n">xAxis</span> <span class="nf">viewPointForCoordinateDecimalNumber</span><span class="p">:</span><span class="n">CPTDecimalFromFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">)];</span>
+
+            <span class="c1">// 固定坐标 默认值：nil
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">axisConstraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTConstraints</span> <span class="nf">constraintWithLowerOffset</span><span class="p">:</span><span class="n">CPTFloat</span><span class="p">(</span><span class="n">zeroPoint</span><span class="p">.</span><span class="n">x</span><span class="p">)];</span>
+
+            <span class="c1">// 坐标原点所在位置，默认值：CPTDecimalFromInteger(0)（在X轴的0点位置）
+</span>            <span class="c1">//yAxis.orthogonalCoordinateDecimal = CPTDecimalFromFloat(0);
+</span>        <span class="p">}</span>
+
+        <span class="c1">// 主刻度线设置
+</span>        <span class="p">{</span>
+            <span class="c1">// 显示数字标签的量度间隔
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">majorIntervalLength</span> <span class="o">=</span> <span class="n">CPTDecimalFromFloat</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="c1">// 刻度线，线型设置
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">majorTickLineStyle</span> <span class="o">=</span> <span class="n">majorLineStyle</span><span class="p">;</span>
+            <span class="c1">// 刻度线的长度
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">majorTickLength</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 细分刻度线设置
+</span>        <span class="p">{</span>
+            <span class="c1">// 每一个主刻度范围内显示细分刻度的个数
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">minorTicksPerInterval</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+            <span class="c1">// 刻度线的长度
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">minorTickLength</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+            <span class="c1">// 刻度线，线型设置
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">minorTickLineStyle</span> <span class="o">=</span> <span class="n">minorLineStyle</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 网格线设置 默认不显示
+</span>        <span class="p">{</span>
+            <span class="c1">//yAxis.majorGridLineStyle = majorLineStyle;
+</span>            <span class="c1">//yAxis.minorGridLineStyle = minorLineStyle;
+</span>            <span class="c1">//yAxis.gridLinesRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0) length:CPTDecimalFromFloat(_coordinatesY.count)];
+</span>        <span class="p">}</span>
+
+        <span class="c1">// 轴标签设置
+</span>        <span class="p">{</span>
+            <span class="c1">// 轴标签偏移量
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">labelOffset</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+            <span class="c1">// 轴标签样式
+</span>            <span class="n">yAxis</span><span class="p">.</span><span class="n">labelTextStyle</span> <span class="o">=</span> <span class="n">axisTextStyle</span><span class="p">;</span>
+
+            <span class="c1">// 排除不显示的标签
+</span>            <span class="n">NSArray</span> <span class="o">*</span><span class="n">exclusionRanges</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSArray</span> <span class="nf">arrayWithObjects</span><span class="p">:</span>
+                                        <span class="p">[</span><span class="n">CPTPlotRange</span> <span class="nf">plotRangeWithLocation</span><span class="p">:</span><span class="n">CPTDecimalFromDouble</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">99</span><span class="p">)</span> <span class="nf">length</span><span class="p">:</span><span class="n">CPTDecimalFromDouble</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mo">02</span><span class="p">)],</span>
+                                        <span class="p">[</span><span class="n">CPTPlotRange</span> <span class="nf">plotRangeWithLocation</span><span class="p">:</span><span class="n">CPTDecimalFromDouble</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">99</span><span class="p">)</span> <span class="nf">length</span><span class="p">:</span><span class="n">CPTDecimalFromDouble</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mo">02</span><span class="p">)],</span>
+                                        <span class="nb">nil</span><span class="p">];</span>
+            <span class="n">yAxis</span><span class="p">.</span><span class="n">labelExclusionRanges</span> <span class="o">=</span> <span class="n">exclusionRanges</span><span class="p">;</span>
+
+            <span class="c1">// 因为没有清除默认的轴标签（CPTAxisLabelingPolicyNone）,如果想要自定义轴标签，需实现委托方法
+</span>        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div> <p>如果想自定义标签及刻度，则需要清除默认的方案，设置属性labelingPolicy为CPTAxisLabelingPolicyNone，预设的轴标签有4种：CPTAxisLabelingPolicyLocationsProvided、CPTAxisLabelingPolicyFixedInterval、CPTAxisLabelingPolicyAutomatic、CPTAxisLabelingPolicyEqualDivisions。如果采用预设的方案，只是采用它的刻度线设置，想使用自定义的轴标签，则需要实现轴标签的委托事件。</p> <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma mark 是否使用系统的轴标签样式 并可改变标签样式 可用于任何标签方案(labelingPolicy)
+</span><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">axis</span><span class="p">:(</span><span class="n">CPTAxis</span> <span class="o">*</span><span class="p">)</span><span class="nv">axis</span> <span class="nf">shouldUpdateAxisLabelsAtLocations</span><span class="p">:(</span><span class="n">NSSet</span> <span class="o">*</span><span class="p">)</span><span class="nv">locations</span>
+<span class="p">{</span>
+    <span class="c1">// 返回NO，使用自定义，返回YES，使用系统的标签
+</span>    <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div> <h1 id="id-cptscatterplot">散点图、折线图、曲线图、直方图（CPTScatterPlot）的创建</h1> <p>CPTScatterPlot用于创建散点图，继承自CPTPlot。</p> <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma mark 创建平面图，折线图
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">createPlots</span>
+<span class="p">{</span>
+    <span class="c1">// 创建折线图
+</span>    <span class="n">CPTScatterPlot</span> <span class="o">*</span><span class="n">scatterPlot</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTScatterPlot</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+
+    <span class="c1">// 添加图形到绘图空间
+</span>    <span class="p">[</span><span class="n">_hostView</span><span class="p">.</span><span class="n">hostedGraph</span> <span class="nf">addPlot</span><span class="p">:</span><span class="n">scatterPlot</span><span class="p">];</span>
+
+    <span class="c1">// 标识,根据此@ref identifier来区分不同的plot,也是图例显示名称,
+</span>    <span class="n">scatterPlot</span><span class="p">.</span><span class="n">identifier</span> <span class="o">=</span> <span class="s">@"scatter"</span><span class="p">;</span>
+
+    <span class="c1">// 设定数据源，需应用CPTScatterPlotDataSource协议
+</span>    <span class="n">scatterPlot</span><span class="p">.</span><span class="n">dataSource</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+
+    <span class="c1">// 委托事件
+</span>    <span class="n">scatterPlot</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+
+    <span class="c1">// 线性显示方式设置 默认值：CPTScatterPlotInterpolationLinear（折线图）
+</span>    <span class="c1">// CPTScatterPlotInterpolationCurved（曲线图）
+</span>    <span class="c1">// CPTScatterPlotInterpolationStepped／CPTScatterPlotInterpolationHistogram（直方图）
+</span>    <span class="n">scatterPlot</span><span class="p">.</span><span class="n">interpolation</span> <span class="o">=</span> <span class="n">CPTScatterPlotInterpolationCurved</span><span class="p">;</span>
+
+    <span class="c1">// 数据标签设置，如果想用自定义的标签，则需要数据源方法：dataLabelForPlot:recordIndex:
+</span>    <span class="p">{</span>
+        <span class="c1">// 偏移量设置
+</span>        <span class="n">scatterPlot</span><span class="p">.</span><span class="n">labelOffset</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+        <span class="c1">// 数据标签样式
+</span>        <span class="n">CPTMutableTextStyle</span> <span class="o">*</span><span class="n">labelTextStyle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTMutableTextStyle</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+        <span class="n">labelTextStyle</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTColor</span> <span class="nf">magentaColor</span><span class="p">];</span>
+        <span class="n">scatterPlot</span><span class="p">.</span><span class="n">labelTextStyle</span> <span class="o">=</span> <span class="n">labelTextStyle</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 线条样式设置
+</span>    <span class="p">{</span>
+        <span class="n">CPTMutableLineStyle</span> <span class="o">*</span> <span class="n">scatterLineStyle</span> <span class="o">=</span> <span class="p">[[</span> <span class="n">CPTMutableLineStyle</span> <span class="nf">alloc</span> <span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+        <span class="n">scatterLineStyle</span><span class="p">.</span><span class="n">lineColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTColor</span> <span class="nf">blackColor</span><span class="p">];</span>
+        <span class="n">scatterLineStyle</span><span class="p">.</span><span class="n">lineWidth</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="c1">// 破折线
+</span>        <span class="n">scatterLineStyle</span><span class="p">.</span><span class="n">dashPattern</span> <span class="o">=</span> <span class="p">@[</span><span class="err">@</span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span><span class="err">@</span><span class="p">(</span><span class="mi">5</span><span class="p">.</span><span class="mi">0</span><span class="p">)];</span>
+
+        <span class="c1">// 如果设置为nil则为散点图
+</span>        <span class="n">scatterPlot</span><span class="p">.</span><span class="n">dataLineStyle</span> <span class="o">=</span> <span class="n">scatterLineStyle</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 添加拐点
+</span>    <span class="p">{</span>
+        <span class="c1">// 符号类型：椭圆
+</span>        <span class="n">CPTPlotSymbol</span> <span class="o">*</span><span class="n">plotSymbol</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTPlotSymbol</span> <span class="nf">ellipsePlotSymbol</span><span class="p">];</span>
+        <span class="c1">// 符号大小
+</span>        <span class="n">plotSymbol</span><span class="p">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">CPTSizeMake</span><span class="p">(</span><span class="mi">8</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">,</span> <span class="mi">8</span><span class="p">.</span><span class="n">f</span><span class="p">);</span>
+        <span class="c1">// 符号填充色
+</span>        <span class="n">plotSymbol</span><span class="p">.</span><span class="n">fill</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTFill</span> <span class="nf">fillWithColor</span><span class="p">:[</span><span class="n">CPTColor</span> <span class="nf">whiteColor</span><span class="p">]];</span>
+        <span class="c1">// 边框设置
+</span>        <span class="n">CPTMutableLineStyle</span> <span class="o">*</span><span class="n">symboLineStyle</span> <span class="o">=</span> <span class="p">[[</span> <span class="n">CPTMutableLineStyle</span> <span class="nf">alloc</span> <span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+        <span class="n">symboLineStyle</span><span class="p">.</span><span class="n">lineColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTColor</span> <span class="nf">blackColor</span><span class="p">];</span>
+        <span class="n">symboLineStyle</span><span class="p">.</span><span class="n">lineWidth</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="n">plotSymbol</span><span class="p">.</span><span class="n">lineStyle</span> <span class="o">=</span> <span class="n">symboLineStyle</span><span class="p">;</span>
+
+        <span class="c1">// 向图形上加入符号
+</span>        <span class="n">scatterPlot</span><span class="p">.</span><span class="n">plotSymbol</span> <span class="o">=</span> <span class="n">plotSymbol</span><span class="p">;</span>
+
+        <span class="c1">// 设置拐点的外沿范围，以用来扩大检测手指的触摸范围
+</span>        <span class="n">scatterPlot</span><span class="p">.</span><span class="n">plotSymbolMarginForHitDetection</span> <span class="o">=</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+    <span class="c1">// 创建渐变区
+</span>    <span class="p">{</span>
+        <span class="c1">// 创建一个颜色渐变：从渐变色BeginningColor渐变到色endingColor
+</span>        <span class="n">CPTGradient</span> <span class="o">*</span><span class="n">areaGradient</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTGradient</span> <span class="nf">gradientWithBeginningColor</span><span class="p">:[</span><span class="n">CPTColor</span> <span class="nf">blueColor</span><span class="p">]</span> <span class="nf">endingColor</span><span class="p">:[</span><span class="n">CPTColor</span> <span class="nf">clearColor</span><span class="p">]];</span>
+        <span class="c1">// 渐变角度：-90 度（顺时针旋转）
+</span>        <span class="n">areaGradient</span><span class="p">.</span><span class="n">angle</span> <span class="o">=</span> <span class="o">-</span><span class="mi">90</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span> <span class="p">;</span>
+        <span class="c1">// 创建一个颜色填充：以颜色渐变进行填充
+</span>        <span class="n">CPTFill</span> <span class="o">*</span><span class="n">areaGradientFill</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTFill</span> <span class="nf">fillWithGradient</span><span class="p">:</span><span class="n">areaGradient</span><span class="p">];</span>
+        <span class="c1">// 为图形设置渐变区
+</span>        <span class="n">scatterPlot</span><span class="p">.</span><span class="n">areaFill</span> <span class="o">=</span> <span class="n">areaGradientFill</span><span class="p">;</span>
+        <span class="c1">// 渐变区起始值，小于这个值的图形区域不再填充渐变色
+</span>        <span class="n">scatterPlot</span><span class="p">.</span><span class="n">areaBaseValue</span> <span class="o">=</span> <span class="n">CPTDecimalFromString</span> <span class="p">(</span><span class="s">@"0.0"</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 显示动画
+</span>    <span class="p">{</span>
+        <span class="n">scatterPlot</span><span class="p">.</span><span class="n">opacity</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">;</span>
+        <span class="n">CABasicAnimation</span> <span class="o">*</span><span class="n">fadeInAnimation</span> <span class="o">=</span> <span class="p">[</span><span class="n">CABasicAnimation</span> <span class="nf">animationWithKeyPath</span><span class="p">:</span><span class="s">@"opacity"</span><span class="p">];</span>
+        <span class="n">fadeInAnimation</span><span class="p">.</span><span class="n">duration</span>            <span class="o">=</span> <span class="mi">3</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">;</span>
+        <span class="n">fadeInAnimation</span><span class="p">.</span><span class="n">removedOnCompletion</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+        <span class="n">fadeInAnimation</span><span class="p">.</span><span class="n">fillMode</span>            <span class="o">=</span> <span class="n">kCAFillModeForwards</span><span class="p">;</span>
+        <span class="n">fadeInAnimation</span><span class="p">.</span><span class="n">toValue</span>             <span class="o">=</span> <span class="p">[</span><span class="n">NSNumber</span> <span class="nf">numberWithFloat</span><span class="p">:</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">scatterPlot</span> <span class="nf">addAnimation</span><span class="p">:</span><span class="n">fadeInAnimation</span> <span class="nf">forKey</span><span class="p">:</span><span class="s">@"animateOpacity"</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div> <p>在CPTXYScatterPlot中属性interpolation用于设置线性显示方式，它是一个枚举类型，有CPTScatterPlotInterpolationLinear（折线图）、CPTScatterPlotInterpolationCurved（曲线图）、CPTScatterPlotInterpolationStepped／CPTScatterPlotInterpolationHistogram（直方图）4中，其中CPTScatterPlotInterpolationLinear是默认值。只要把线条样式（dataLineStyle）的值设为nil，则是散点图。</p> <h1 id="id-cptscatterplotdatasource">CPTScatterPlot的dataSource方法</h1> <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma mark 询问有多少个数据
+</span><span class="k">-</span> <span class="p">(</span><span class="n">NSUInteger</span><span class="p">)</span> <span class="nf">numberOfRecordsForPlot</span><span class="p">:(</span><span class="n">CPTPlot</span> <span class="o">*</span><span class="p">)</span><span class="nv">plot</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">dataSource</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#pragma mark 询问一个个数据值 fieldEnum:一个轴类型，是一个枚举  idx：坐标轴索引
+</span><span class="k">-</span> <span class="p">(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nf">numberForPlot</span><span class="p">:(</span><span class="n">CPTPlot</span> <span class="o">*</span><span class="p">)</span><span class="nv">plot</span> <span class="nf">field</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">fieldEnum</span> <span class="nf">recordIndex</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">idx</span>
+<span class="p">{</span>
+    <span class="n">NSNumber</span> <span class="o">*</span><span class="n">num</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">fieldEnum</span> <span class="o">==</span> <span class="n">CPTScatterPlotFieldY</span><span class="p">){</span>            <span class="c1">//询问在Y轴上的值
+</span>        <span class="n">num</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">dataSource</span><span class="p">[</span><span class="nf">idx</span><span class="p">];</span>
+    <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">fieldEnum</span> <span class="o">==</span> <span class="n">CPTScatterPlotFieldX</span><span class="p">){</span>     <span class="c1">//询问在X轴上的值
+</span>        <span class="n">num</span> <span class="o">=</span> <span class="err">@</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#pragma mark 添加数据标签，在拐点上显示的文本
+</span><span class="k">-</span> <span class="p">(</span><span class="n">CPTLayer</span> <span class="o">*</span><span class="p">)</span><span class="nf">dataLabelForPlot</span><span class="p">:(</span><span class="n">CPTPlot</span> <span class="o">*</span><span class="p">)</span><span class="nv">plot</span> <span class="nf">recordIndex</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">idx</span>
+<span class="p">{</span>
+    <span class="c1">// 数据标签样式
+</span>    <span class="n">CPTMutableTextStyle</span> <span class="o">*</span><span class="n">labelTextStyle</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTMutableTextStyle</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+    <span class="n">labelTextStyle</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTColor</span> <span class="nf">magentaColor</span><span class="p">];</span>
+
+    <span class="c1">// 定义一个 TextLayer
+</span>    <span class="n">CPTTextLayer</span> <span class="o">*</span><span class="n">newLayer</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTTextLayer</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithText</span><span class="p">:[</span><span class="n">NSString</span> <span class="nf">stringWithFormat</span><span class="p">:</span><span class="s">@"%d"</span><span class="p">,[</span><span class="n">self</span><span class="p">.</span><span class="n">dataSource</span><span class="p">[</span><span class="nf">idx</span><span class="p">]</span> <span class="nf">integerValue</span><span class="p">]]</span> <span class="nf">style</span><span class="p">:</span><span class="n">labelTextStyle</span><span class="p">];</span>
+
+    <span class="k">return</span> <span class="n">newLayer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div> <h1 id="id-cptscatterplotdelegate">CPTScatterPlot的delegate方法</h1> <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma mark 选择拐点时
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">scatterPlot</span><span class="p">:(</span><span class="n">CPTScatterPlot</span> <span class="o">*</span><span class="p">)</span><span class="nv">plot</span> <span class="nf">plotSymbolWasSelectedAtRecordIndex</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">idx</span> <span class="nf">withEvent</span><span class="p">:(</span><span class="n">UIEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span>
+<span class="p">{</span>
+    <span class="c1">// 移除注释
+</span>    <span class="n">CPTPlotArea</span> <span class="o">*</span><span class="n">plotArea</span> <span class="o">=</span> <span class="n">_hostView</span><span class="p">.</span><span class="n">hostedGraph</span><span class="p">.</span><span class="n">plotAreaFrame</span><span class="p">.</span><span class="n">plotArea</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">plotArea</span> <span class="nf">removeAllAnnotations</span><span class="p">];</span>
+
+    <span class="c1">// 创建拐点注释，plotSpace：绘图空间 anchorPlotPoint：坐标点
+</span>    <span class="n">CPTPlotSpaceAnnotation</span> <span class="o">*</span><span class="n">symbolTextAnnotation</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTPlotSpaceAnnotation</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithPlotSpace</span><span class="p">:</span><span class="n">_hostView</span><span class="p">.</span><span class="n">hostedGraph</span><span class="p">.</span><span class="n">defaultPlotSpace</span> <span class="nf">anchorPlotPoint</span><span class="p">:@[</span><span class="err">@</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span><span class="n">self</span><span class="p">.</span><span class="n">dataSource</span><span class="p">[</span><span class="nf">idx</span><span class="p">]]];</span>
+
+    <span class="c1">// 文本样式
+</span>    <span class="n">CPTMutableTextStyle</span> <span class="o">*</span><span class="n">annotationTextStyle</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTMutableTextStyle</span> <span class="nf">textStyle</span><span class="p">];</span>
+    <span class="n">annotationTextStyle</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTColor</span> <span class="nf">greenColor</span><span class="p">];</span>
+    <span class="n">annotationTextStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="o">=</span> <span class="mi">17</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">;</span>
+    <span class="n">annotationTextStyle</span><span class="p">.</span><span class="n">fontName</span> <span class="o">=</span> <span class="s">@"Helvetica-Bold"</span><span class="p">;</span>
+    <span class="c1">// 显示的字符串
+</span>    <span class="n">NSString</span> <span class="o">*</span><span class="n">randomValue</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nf">stringWithFormat</span><span class="p">:</span><span class="s">@"折线图</span><span class="se">\n</span><span class="s">随即值：%@ </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">dataSource</span><span class="p">[</span><span class="nf">idx</span><span class="p">]</span> <span class="nf">stringValue</span><span class="p">]];</span>
+    <span class="c1">// 注释内容
+</span>    <span class="n">CPTTextLayer</span> <span class="o">*</span><span class="n">textLayer</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTTextLayer</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithText</span><span class="p">:</span><span class="n">randomValue</span> <span class="nf">style</span><span class="p">:</span><span class="n">annotationTextStyle</span><span class="p">];</span>
+    <span class="c1">// 添加注释内容
+</span>    <span class="n">symbolTextAnnotation</span><span class="p">.</span><span class="n">contentLayer</span> <span class="o">=</span> <span class="n">textLayer</span><span class="p">;</span>
+
+    <span class="c1">// 注释位置
+</span>    <span class="n">symbolTextAnnotation</span><span class="p">.</span><span class="n">displacement</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="n">CPTFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">CPTFloat</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span>
+
+    <span class="c1">// 把拐点注释添加到绘图区域中
+</span>    <span class="p">[</span><span class="n">plotArea</span> <span class="nf">addAnnotation</span><span class="p">:</span><span class="n">symbolTextAnnotation</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div> <h1 id="id-cptlegend">图例（CPTLegend）的创建</h1> <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma mark 创建图例
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">createLegend</span>
+<span class="p">{</span>
+    <span class="c1">// 图例样式设置
+</span>    <span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableArray</span> <span class="nf">array</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">_hostView</span><span class="p">.</span><span class="n">hostedGraph</span><span class="p">.</span><span class="n">allPlots</span><span class="p">.</span><span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">CPTScatterPlot</span> <span class="o">*</span><span class="n">scatterPlot</span> <span class="o">=</span> <span class="n">_hostView</span><span class="p">.</span><span class="n">hostedGraph</span><span class="p">.</span><span class="n">allPlots</span><span class="p">[</span><span class="nf">i</span><span class="p">];</span>
+
+        <span class="n">CPTScatterPlot</span> <span class="o">*</span><span class="n">plot</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CPTScatterPlot</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+        <span class="n">plot</span><span class="p">.</span><span class="n">dataLineStyle</span> <span class="o">=</span> <span class="n">scatterPlot</span><span class="p">.</span><span class="n">dataLineStyle</span><span class="p">;</span>
+        <span class="n">plot</span><span class="p">.</span><span class="n">plotSymbol</span> <span class="o">=</span> <span class="n">scatterPlot</span><span class="p">.</span><span class="n">plotSymbol</span><span class="p">;</span>
+        <span class="n">plot</span><span class="p">.</span><span class="n">identifier</span> <span class="o">=</span> <span class="s">@"折线图"</span><span class="p">;</span>
+        <span class="p">[</span><span class="n">plots</span> <span class="nf">addObject</span><span class="p">:</span><span class="n">plot</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="c1">// 图例初始化
+</span>    <span class="n">CPTLegend</span> <span class="o">*</span><span class="n">legend</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTLegend</span> <span class="nf">legendWithPlots</span><span class="p">:</span><span class="n">plots</span><span class="p">];</span>
+    <span class="c1">// 图例的列数。有时图例太多，单列显示太长，可分为多列显示
+</span>    <span class="n">legend</span><span class="p">.</span><span class="n">numberOfColumns</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// 图例外框的线条样式
+</span>    <span class="n">legend</span><span class="p">.</span><span class="n">borderLineStyle</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+    <span class="c1">// 图例的填充属性，CPTFill 类型
+</span>    <span class="n">legend</span><span class="p">.</span><span class="n">fill</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTFill</span> <span class="nf">fillWithColor</span><span class="p">:[</span><span class="n">CPTColor</span> <span class="nf">clearColor</span><span class="p">]];</span>
+    <span class="c1">// 图例中每个样本的大小
+</span>    <span class="n">legend</span><span class="p">.</span><span class="n">swatchSize</span> <span class="o">=</span> <span class="n">CGSizeMake</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="c1">// 图例中每个样本的文本样式
+</span>    <span class="n">CPTMutableTextStyle</span> <span class="o">*</span><span class="n">titleTextStyle</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTMutableTextStyle</span> <span class="nf">textStyle</span><span class="p">];</span>
+    <span class="n">titleTextStyle</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPTColor</span> <span class="nf">blackColor</span><span class="p">];</span>
+    <span class="n">titleTextStyle</span><span class="p">.</span><span class="n">fontName</span> <span class="o">=</span> <span class="s">@"Helvetica-Bold"</span><span class="p">;</span>
+    <span class="n">titleTextStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+    <span class="n">legend</span><span class="p">.</span><span class="n">textStyle</span> <span class="o">=</span> <span class="n">titleTextStyle</span><span class="p">;</span>
+
+    <span class="c1">// 把图例于图表关联起来
+</span>    <span class="n">_hostView</span><span class="p">.</span><span class="n">hostedGraph</span><span class="p">.</span><span class="n">legend</span> <span class="o">=</span> <span class="n">legend</span><span class="p">;</span>
+    <span class="c1">// 图例对齐于图框的位置，可以用 CPTRectAnchor 枚举类型，指定图例向图框的4角、4边（中点）对齐，默认值：CPTRectAnchorBottom（底部居中）
+</span>    <span class="n">_hostView</span><span class="p">.</span><span class="n">hostedGraph</span><span class="p">.</span><span class="n">legendAnchor</span> <span class="o">=</span> <span class="n">CPTRectAnchorTopRight</span><span class="p">;</span>
+    <span class="c1">// 图例对齐时的偏移距离（相对于legendAnchor的偏移距离），默认值：CGPointZeor
+</span>    <span class="n">_hostView</span><span class="p">.</span><span class="n">hostedGraph</span><span class="p">.</span><span class="n">legendDisplacement</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div> <p>创建图例时，如果图例的名称和CPTPlot属性identifier的名称一致，则不需要在单独创建plots集合了，直接使用_hostView.hostedGraph.allPlots即可，因为土里的图标和名称取得就是CPTScatterPlot的dataLineStyle、plotSymbol及identifier属性。</p> <div class="entry-meta"> <br> <hr> <span class="entry-tags"><a href="/tags/#iOS" title="Pages tagged iOS" class="tag"><span class="term">iOS</span></a><a href="/tags/#%E7%A7%BB%E5%8A%A8" title="Pages tagged 移动" class="tag"><span class="term">移动</span></a><a href="/tags/#CorePlot" title="Pages tagged CorePlot" class="tag"><span class="term">CorePlot</span></a><a href="/tags/#%E5%9B%BE%E8%A1%A8" title="Pages tagged 图表" class="tag"><span class="term">图表</span></a><a href="/tags/#%E6%8A%98%E7%BA%BF%E5%9B%BE" title="Pages tagged 折线图" class="tag"><span class="term">折线图</span></a></span> <span class="social-share"> <a href="https://www.facebook.com/sharer/sharer.php?u=/posts/2014/12/03/CorePlot_1.5.1-%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE-%E6%8A%98%E7%BA%BF%E5%9B%BE-%E6%9B%B2%E7%BA%BF%E5%9B%BE-%E7%9B%B4%E6%96%B9%E5%9B%BE/" title="Share on Facebook" class="tag"> <span class="term"><i class="fa fa-facebook-square"></i> Like</span> </a> <a href="https://twitter.com/intent/tweet?text=/posts/2014/12/03/CorePlot_1.5.1-%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE-%E6%8A%98%E7%BA%BF%E5%9B%BE-%E6%9B%B2%E7%BA%BF%E5%9B%BE-%E7%9B%B4%E6%96%B9%E5%9B%BE/" title="Share on Twitter" class="tag"> <span class="term"><i class="fa fa-twitter-square"></i> Tweet</span> </a> <a href="https://plus.google.com/share?url=/posts/2014/12/03/CorePlot_1.5.1-%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE-%E6%8A%98%E7%BA%BF%E5%9B%BE-%E6%9B%B2%E7%BA%BF%E5%9B%BE-%E7%9B%B4%E6%96%B9%E5%9B%BE/" title="Share on Google+" class="tag"> <span class="term"><i class="fa fa-google-plus-square"></i> +1</span> </a> </span> <div style="clear:both"></div> </div> </div> </div> <!-- /#commentit_thread 评论UI --> <section id="commentit_thread" class="animated fadeInUp"></section> </header> <!-- JS --> <script src="/assets/js/jquery-1.12.0.min.js"></script> <script src="/assets/js/jquery.dlmenu.min.js"></script> <script src="/assets/js/jquery.goup.min.js"></script> <script src="/assets/js/jquery.magnific-popup.min.js"></script> <script src="/assets/js/jquery.fitvid.min.js"></script> <script src="/assets/js/scripts.js"></script> <!-- Asynchronous Google Analytics snippet --> <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-83690324-2', 'auto'); ga('require', 'linkid', 'linkid.js'); ga('send', 'pageview'); </script> <!-- Comm(ent|it)评论加载 https://commentit.io/ --> <!-- 历史评论列表 --> <!-- There are no comments on this post. --> <!-- 发表评论 --> <noscript>Please enable JavaScript to view the comment form powered by <a href="https://commentit.io/">Comm(ent|it)</a>
+</noscript> <div id="commentit"></div> <script type="text/javascript"> /** CONFIGURATION VARIABLES **/ var commentitUsername = 'myzerone'; var commentitRepo = 'myzerone/myzerone.github.io'; var commentitId = '/posts/2014/12/03/CorePlot_1.5.1 绘制散点图（折线图、曲线图、直方图）'; /** DON'T EDIT FOLLOWING LINES **/ (function() { if (!document.getElementById('commentit_thread')) { return; }　 var commentit = document.createElement('script'); commentit.type = 'text/javascript'; commentit.async = true; commentit.src = 'https://commentit.io/static/embed/dist/commentit.js'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(commentit); document.getElementById('commentit_thread').appendChild(document.getElementById('commentit')); })(); </script> </body> </html>

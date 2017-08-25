@@ -91,24 +91,6 @@ timezone:      null
 quiet:    false
 
 # Markdown 处理器
-rdiscount:
-  extensions: []
-
-redcarpet:
-  extensions:
-    - hard_wrap
-    - no_intra_emphasis
-    - autolink
-    - strikethrough
-    - fenced_code_blocks
-    - with_toc_data
-    - space_after_headers
-    - prettify
-    - tables
-    - superscript
-# redcarpet :
-#   extensions : ["fenced_code_blocks", "no_intra_emphasis", "autolink", "strikethrough", "with_toc_data", "space_after_headers","prettify", "tables", "superscript"]
-
 kramdown:
   input:          GFM
   auto_ids:       true
@@ -140,7 +122,7 @@ google:
   #ad-client:
   #ad-slot:
 #bing-verify:
-email:              myzerone@myzerone.com
+email:              myzerone@outlook.com
 #twitter:            username
 #facebook:           username
 github:             myzerone
