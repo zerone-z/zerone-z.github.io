@@ -1,4 +1,4 @@
-# xj01.github.io
+# myzerone.github.io
 
 # myzerone的博客
 
