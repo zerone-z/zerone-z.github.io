@@ -39,6 +39,3 @@ tags: [Markdown]
 
     NSLog(@"方式2：%@", deviceTokenString2);
 ```
-
-
-测试
