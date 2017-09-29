@@ -73,9 +73,9 @@ $ gem sources -l
 这时候，你再次在终端中运行：
 
 ```
-// 安装CocoaPods（OS X 10.11以前）
+# 安装CocoaPods（OS X 10.11以前）
 $ sudo gem install cocoapods
-// 安装CocoaPods（OS X 10.11后苹果升级了安全策略）
+# 安装CocoaPods（OS X 10.11后苹果升级了安全策略）
 $ sudo gem install -n /usr/local/bin cocoapods
 ```
 
