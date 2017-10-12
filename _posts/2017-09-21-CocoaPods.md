@@ -331,15 +331,14 @@ end
 ### 其他配置项  
 
 1. Source：指定pod仓库的来源
+   如果不指定source，默认使用CocoaPods官方source，这里建议使用默认位置。  
 
-如果不指定source，默认使用CocoaPods官方source，这里建议使用默认位置。  
-
-```ruby
-# 使用其他来源地址
-source 'https://github.com/artsy/Specs.git'
-# 使用官方默认地址（默认）
-source 'https://github.com/CocoaPods/Specs.git'
-```
+    ```ruby
+    # 使用其他来源地址
+    source 'https://github.com/artsy/Specs.git'
+    # 使用官方默认地址（默认）
+    source 'https://github.com/CocoaPods/Specs.git'
+    ```
 
 2. platform：指定应建立的静态库的平台，其默认配置有： 
     
