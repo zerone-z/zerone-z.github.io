@@ -27,7 +27,8 @@ layout: compress
                 </div>
                 {% endif %}
                 <div class="post-list">
-                    {% for note in site.notes %}
+                    {% assign notes = site.notes | sort: 'date' | reverse %}
+                    {% for note in notes %}
                     <ul>
                         <li class="wow fadeInLeft" data-wow-duration="1.5s">
                             <a class="zoombtn" href="{{ site.url }}{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a>
