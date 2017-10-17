@@ -189,3 +189,12 @@ override func viewWillDisappear(_ animated: Bool) {
  - 在切换UITabBarController的时候，导航栏也会出现显示/隐藏动画
 
 > NOTE：因为我们的animated使用的是继承过来的属性，这样就可以完美的避开需要区分一个界面的显示是否使用动画。
+
+
+## NavigationBar透明  
+
+```swift
+self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default);
+self.navigationController?.navigationBar.shadowImage = UIImage();
+self.navigationController?.navigationBar.isTranslucent = true;
+```
