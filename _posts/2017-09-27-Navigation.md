@@ -155,6 +155,7 @@ barItem.setTitleTextAttributes([NSAttributedStringKey.font : UIFont.systemFont(o
 
 // 去除返回按钮的标题
 if #available(iOS 11, *) {
+    // 这种隐藏的不止返回按钮，导航栏上的其他按钮标题也会被隐藏调
     barItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.clear], for: .normal);
     barItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.clear], for: .highlighted);
 } else {
@@ -190,11 +191,40 @@ override func viewWillDisappear(_ animated: Bool) {
 
 > NOTE：因为我们的animated使用的是继承过来的属性，这样就可以完美的避开需要区分一个界面的显示是否使用动画。
 
-
 ## NavigationBar透明  
 
 ```swift
 self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default);
 self.navigationController?.navigationBar.shadowImage = UIImage();
 self.navigationController?.navigationBar.isTranslucent = true;
+```
+
+## 导航栏标题  
+
+### 大标题  
+
+iOS 11 新增了一种大标题样式，默认是不开启的。  
+如果想用在导航的所有界面中都启用大标题，那我们就设置 `navigationBar` 的属性 `prefersLargeTitles` 为 `YES` 即可。  
+
+```objc
+self.navigationController.navigationBar.prefersLargeTitles = YES;
+```
+
+但是有个别界面又不想显示大标题，这时可以通过设置当前界面中的 `navigationItem` 的属性 `largeTitleDisplayMode` 来设置显示方案。  
+
+```objc
+// UINavigationItemLargeTitleDisplayModeAutomatic 自动模式依赖上一个 item 的特性
+// UINavigationItemLargeTitleDisplayModeAlways 针对当前 item 总是启用大标题特性
+// UINavigationItemLargeTitleDisplayModeNever 从不
+
+self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeNever;
+```
+### titleView  
+
+iOS 11 开始titleView支持autoLayout了，这就要求titleView必须能够自撑开或者实现 `-(CGSize)intrinsicContentSize` 方法。  
+
+```objc
+- (CGSize)intrinsicContentSize {
+    return UILayoutFittingExpandedSize;
+}
 ```
