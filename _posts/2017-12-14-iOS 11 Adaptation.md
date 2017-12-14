@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: post
 title: iOS 11适配汇总
 motto: null
 excerpt: 记录iOS 11开发/适配过程中遇到的问题及解决方案。
