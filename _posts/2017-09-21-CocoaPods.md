@@ -48,6 +48,14 @@ $ sudo gem install cocoapods -v 1.0.0       # 安装指定版本
 $ sudo gem install cocoapods --pre          # 安装最新的release beta版本
 ```
 
+如果上面的安装cocoapods出错，可使用如下命令安装。(OS X 10.11后苹果升级了安全策略)  
+
+```vim
+$ sudo gem install -n /usr/local/bin cocoapods                # 安装最新版本
+$ sudo gem install -n /usr/local/bin cocoapods -v 1.0.0       # 安装指定版本
+$ sudo gem install -n /usr/local/bin cocoapods --pre          # 安装最新的release beta版本
+```
+
 但是，且慢。如果你在天朝，在终端中敲入这个命令之后，会发现半天没有任何反应。原因无他，因为那堵墙阻挡了cocoapods.org。建议更换成Ruby-China的源，参考[https://gems.ruby-china.org/](https://gems.ruby-china.org/)。按照下面的顺序在终端中敲入依次敲入命令：
 
 ```vim
@@ -70,14 +78,7 @@ $ gem sources -l
         https://gems.ruby-china.org/
 ```
 
-这时候，你再次在终端中运行：
-
-```
-# 安装CocoaPods（OS X 10.11以前）
-$ sudo gem install cocoapods
-# 安装CocoaPods（OS X 10.11后苹果升级了安全策略）
-$ sudo gem install -n /usr/local/bin cocoapods
-```
+这时候，你再次在终端中输入命令安装Cocoapods。
 
 等上十几秒钟，CocoaPods就可以在你本地下载并且安装好了。  
 
