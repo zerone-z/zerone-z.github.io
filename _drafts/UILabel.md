@@ -2,7 +2,7 @@
 layout: post
 title: UILabel解决方案汇总
 motto: null
-excerpt: 主要记录了，在开发过程中遇到的各种奇葩问题已经解决方案
+excerpt: 主要记录了，UILabel在开发过程中遇到的各种奇葩问题以及解决方案
 tags: [UILabel]
 ---
 
@@ -54,3 +54,21 @@ label.lineBreakMode = .byTruncatingTail;
     [self.view layoutIfNeeded];
 }
 ```
+
+## 设计图上的行距与代码之间的间距问题  
+
+在实际开发过程中，如果我们按照设计图上的间距进行设置，仔细看会发现，实际呈现出来的间距会比设计图上的间距大，别小看这点间距，最终会造成视觉上的差距，与设计图可能就是天差地别了，我们是要负责的。那要怎么才能计算出正确的间距呢？我参考了如下的文章。  
+[Text Kit学习日记–02–字体](https://wbuntu.com/p/85)，我们可以了解到iOS中字体的组成与各种属性构成。当然也可以看看iOS的官方文档[Cocoa Text Architecture Guide](https://developer.apple.com/library/content/documentation/TextFonts/Conceptual/CocoaTextArchitecture/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009459-CH1-SW1)。  
+其中官方文档中有个Font metrics，通过这个图，我们可以初步了解一下字体结构。  
+![目录](/assets/notes/UILabel/font.png)
+通过上面的文章，我们知道 UIFont 中各属性的值的意义。  
+ - pointSize ： 按点计算的尺寸，等于字体尺寸的大小
+ - lineHeight ： 行高，即字体实际占用的高度
+
+这样我们就可以使用下面的方法计算出字体的留白空间了（多出的间距）。  
+
+```objc
+CGFloat offset = -(font.lineHeight - font.pointSize) * 0.5;
+```
+
+然后在实际使用过程中，我们只要使设计图中的标注间距减去该间距 `offset`，就是我们代码中使用的间距，这样的视觉效果就会和设计图上的完全一致了。  
