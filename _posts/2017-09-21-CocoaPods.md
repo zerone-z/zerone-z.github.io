@@ -56,12 +56,12 @@ $ sudo gem install -n /usr/local/bin cocoapods -v 1.0.0       # 安装指定版�
 $ sudo gem install -n /usr/local/bin cocoapods --pre          # 安装最新的release beta版本
 ```
 
-但是，且慢。如果你在天朝，在终端中敲入这个命令之后，会发现半天没有任何反应。原因无他，因为那堵墙阻挡了cocoapods.org。建议更换成Ruby-China的源，参考[https://gems.ruby-china.org/](https://gems.ruby-china.org/)。按照下面的顺序在终端中敲入依次敲入命令：
+但是，且慢。如果你在天朝，在终端中敲入这个命令之后，会发现半天没有任何反应。原因无他，因为那堵墙阻挡了rubygems.org。建议更换成Ruby-China的源，参考[https://gems.ruby-china.com/](https://gems.ruby-china.com/)。按照下面的顺序在终端中敲入依次敲入命令：
 
 ```vim
 $ gem sources --remove https://rubygems.org/
 # 等有反应之后再敲入以下命令
-$ gem sources -a https://gems.ruby-china.org/
+$ gem sources -a https://gems.ruby-china.com/
 ```
 
 为了验证你的Ruby镜像是否更换成功，可以用以下命令查看：
@@ -86,6 +86,8 @@ $ gem sources -l
 
 ```vim
 $ sudo gem uninstall cocoapods
+$ # OS X 10.11 or later 使用下面的命令卸载
+$ sudo gem uninstall -n /usr/local/bin cocoapods
 ```
 
 接下来使用如下命令，下载更新CocoaPods的本地Podspec索引文件。CocoaPods 1.0版本以前本步骤可以跳过，不需要手动执行，因为在你执行`pod install`或者`pod update`命令的时候，会自动执行该命令。但是在CocoaPods 1.0及以后的版本中，不会自动更新本地Podspec索引文件，不更新成为默认行为，如果想要更新需要加入参数`--repo-update`，完整的命令是`pod install --repo-update`。所以这里强烈建议调用该命令，更新本地索引文件，因为如果本地索引文件不是最新，在你搜索、更新、安装的过程中，下载的第三方库可能不是最新的。  

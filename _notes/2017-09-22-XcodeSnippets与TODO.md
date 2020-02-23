@@ -11,11 +11,11 @@ tags: [Xcode, TODO]
 
 # Xcode Snippets  
 
-Xcode4中引入了一个新的特性：代码块（code snippets），在整个界面的右下角，可以通过快捷键`Cmd + Ctrl + Opt + 2`调出来。代码块是一些代码的模版，对于一些常见的编程模式，Xcode代码块可以把这些重复的模式和样板提取出来进行复用。  
+Xcode 4 中引入了一个新的特性：代码块（code snippets），Xcode 10 以下在整个界面的右下角，可以通过快捷键 `Cmd + Ctrl + Opt + 2` 调出来，Xcode 10 以后代码块移到了顶部导航栏上，图标都是 **{}** 可以通过快捷键 `Shift + Command + L` 调出来。代码块是一些代码的模版，对于一些常见的编程模式，Xcode代码块可以把这些重复的模式和样板提取出来进行复用。  
 
 ## 使用Xcode代码块  
 
-使用快捷键打开右下角的代码块窗口，或者点击右下角工具面板第二个小图标 **{}** 查看代码块仓库。在里面你会看到很多Xcode内置的代码块。    
+使用快捷键打开代码块窗口，或者点击图标 **{}** 查看代码块仓库。在里面你会看到很多Xcode内置的代码块。  
 
 ![代码仓库窗口](/assets/notes/codesnippets/repository.png)
 
@@ -31,12 +31,13 @@ Xcode4中引入了一个新的特性：代码块（code snippets），在整个�
 ## 创建Xcode代码块  
 
 Xcode代码块的强大之处还体现在我们可以创建自己的代码块。  
-首先选中需要当作代码块的代码，然后鼠标左键按住选中区域，当鼠标状态变为指针时，拖动到Xcode右下角代码仓库，松开鼠标，设置快捷键等信息。  
+Xcode 10 以前，可以先选中需要当作代码块的代码，然后鼠标左键按住选中区域，当鼠标状态变为指针时，拖动到Xcode右下角代码仓库，松开鼠标，设置快捷键等信息。  
 
 ![创建代码块](/assets/notes/codesnippets/create.gif)
 
-也可以双击代码仓库中的代码块预览代码块，点击`Edit`去编辑代码块，或者设置快捷键等信息。  
+Xcode 10 以后，可以先选中要添加到代码块中的代码并 **右击** ，然后在弹出的对话框中选择 `Create Code Snippet` ，然后设置快捷键等信息。  
 
+也可以双击代码仓库中的代码块预览代码块，点击 `Edit` 去编辑代码块（Xcode 10中，单击一下即可），或者设置快捷键等信息。  
 ![设置代码块](/assets/notes/codesnippets/setup.gif)
 
 具体的每个代码块的设置信息如下：  
@@ -85,7 +86,7 @@ Xcode代码块的强大之处还体现在我们可以创建自己的代码块。
 上面介绍了Xcode支持的四种标签，接下来就是编写了，我一般设置的格式如下：  
 
 ```objc
-// TODO: ToDoList author:<#author#> taskid:<#taskid#> type:<#add modify remove#>
+// TODO: ToDoList type:<#add modify remove#> taskid:<#taskid#>  author:<#author#>
 ```
 
  - **ToDoList** 在4个标签中都会使用，用于全局搜索，可以快速得搜索到使用标签的地方。
