@@ -100,6 +100,15 @@ try
     end tell
 on error errMsg
 end try
+# 点击程序界面上指定的 菜单
+tell application "System Events"
+	tell application "Microsoft Edge" to activate
+	tell process "Microsoft Edge" -- 告诉 Edge
+		tell menu of menu item "开发人员" of menu "工具" of menu bar 1
+			click menu item "开发人员工具…"
+		end tell
+	end tell
+end tell
 ## 调用 Terminal 运行脚步文件
 tell application "Terminal"
     do script ("sh /Users/LuPengDa/Desktop/tmp_crm_qas_npm.sh")
