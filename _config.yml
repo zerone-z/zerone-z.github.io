@@ -1,5 +1,5 @@
 # 站点设置
-title:              myzerone
+title:              zerone-z
 bio:                '嗨，大家好，我是一位来自中国的iOS开发者'
 description:        "记录下自己学习的过程、点滴，也为了分享自己的收获。"
 reading_time:       true
@@ -13,7 +13,7 @@ locale:             zh_CN
 detach:  false
 port:    4000
 host:    127.0.0.1
-url:     "https://myzerone.com"
+url:     "https://zeronez.com"
 # url:     "http://127.0.0.1:4000"
 baseurl: ""
 
@@ -110,8 +110,8 @@ kramdown:
 
 # 评论
 commentFlag:        true
-commentitUsername:  myzerone
-commentitRepo:      myzerone/myzerone.github.io
+commentitUsername:  zeronez
+commentitRepo:      zeronez/zeronez.github.io
 
 #社会化组建
 #if you don't have any of social below, comment the line.
@@ -122,10 +122,10 @@ google:
   #ad-client:
   #ad-slot:
 #bing-verify:
-email:              myzerone@outlook.com
+email:              zeronez@outlook.com
 #twitter:            username
 #facebook:           username
-github:             myzerone
+github:             zeronez
 #stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
 #linkedin:          username
 #xing:              username
