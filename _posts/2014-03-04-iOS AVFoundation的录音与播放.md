@@ -1,18 +1,18 @@
 ---
 layout: post
-title: iOS AVFoundation的录音与播放
+title: iOS AVFoundation 的录音与播放
 motto: null
-excerpt: 使用AVFoundation，框架实现录音，播放音频
+excerpt: 使用 AVFoundation，框架实现录音，播放音频
 tags: [iOS, AVFoundation, 录音]
 ---
 
 > 这是我第一次撰写博客，大部分内容都来自网络，写的不对地方还请多多指教，如果有摘录的地方与原作略有相同还请谅解说明。请多多支持。
 
-# AVAudioSession的使用
+# AVAudioSession 的使用
 
-AVAudioSession是一个单例模式。在IOS7以前可以不用设置，在IOS7上不设置AVAudioSession则不可以录音。
+AVAudioSession 是一个单例模式。在 IOS7 以前可以不用设置，在 IOS7 上不设置 AVAudioSession 则不可以录音。
 
-## 设置AVAudioSession的类别（部分）及开启音频会话
+## 设置 AVAudioSession 的类别（部分）及开启音频会话
 
 |           Category（类别）           |     作用    |
 |:-----------------------------------:|:-----------:|
@@ -45,7 +45,7 @@ AVAudioSession *audioSession = [AVAudioSession sharedInstance];
 [audioSession setActive:NO withFlags:AVAudioSessionSetActiveFlags_NotifyOthersOnDeactivati​​on error:nil];
 ```
 
-# AVAudioRecorder的基本使用
+# AVAudioRecorder 的基本使用
 
 ## 参数设置
 
@@ -53,14 +53,14 @@ AVAudioSession *audioSession = [AVAudioSession sharedInstance];
 |:------------------------ |:---------------------:|:-------|
 | AVFormatIDKey            | 录音格式               | 	kAudioFormatMPEG4AAC，kAudioFormatLinearPCM ... |
 | AVSampleRateKey          | 录音采样率 影响音频的质量 | 8000,44100,96000 |
-| AVNumberOfChannelsKey    | 录音通道数             | 1或2 |
+| AVNumberOfChannelsKey    | 录音通道数             | 1 或 2 |
 | AVLinearPCMBitDepthKey   | 线性采样位数            | 8,16,24,32 |
 | AVEncoderAudioQualityKey | 线性采样位数            | AVAudioQualityMin，AVAudioQualityLow，AVAudioQualityMedium，AVAudioQualityHigh，AVAudioQualityMax |
 
 ## 保存路径的网址设置
 
 ```objc
-// CFUUID每次都会产生一个唯一号
+// CFUUID 每次都会产生一个唯一号
 CFUUIDRef cfuuid = CFUUIDCreate（kCFAllocatorDefault）;
 NSString *cfuuidString =(NSString *)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, cfuuid));
 NSString *catchPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
@@ -68,7 +68,7 @@ NSString *audioRecordFilePath = [catchPath stringByAppendingPathComponent:[NSStr
 NSURL *url = [NSURL fileURLWithPath：audioRecordFilePath];
 ```
 
-## AVAudioRecorder初始化
+## AVAudioRecorder 初始化
 
 ```objc
 NSError *error = nil;
@@ -97,10 +97,10 @@ NSString *catchPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NS
 NSString *audioRecordFilePath = [catchPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.AAC", cfuuidString]];
 NSURL *url = [NSURL fileURLWithPath:audioRecordFilePath];
 NSError *error = nil;
-//初始化AVAudioRecorder
+//初始化 AVAudioRecorder
 _recorder = [[AVAudioRecorder alloc] initWithURL:url settings:recordSetting error:&error];
 if (!error）{
-    //NSLog(@"初始化录音错误:%@", error);
+    //NSLog(@"初始化录音错误：%@", error);
 } else {
    if ([_recorder prepareToRecord]){
        //录音最长时间设置
@@ -139,7 +139,7 @@ if (!error）{
     }
 }
 
-// AVAudioRecorder委托事件
+// AVAudioRecorder 委托事件
 - (void)audioRecorderDidFinishRecording(AVAudioRecorder *)recorder successfully:(BOOL)flag
 {
   //录音结束
@@ -150,9 +150,9 @@ if (!error）{
 }
 ```
 
-## AVAudioPlayer的使用
+## AVAudioPlayer 的使用
 
-主要用于音频文件的播放，它主要有两个初始化方法：`initWithData`与`initWithContentsOfURL`。两个一般都可以使用，但在使用initWithContentsOfURL时要注意传入文件的文件名的格式，稍有不同，则无法播放，如：aac文件，如果后缀名为大写AAC，则无法播放。
+主要用于音频文件的播放，它主要有两个初始化方法：`initWithData`与`initWithContentsOfURL`。两个一般都可以使用，但在使用 initWithContentsOfURL 时要注意传入文件的文件名的格式，稍有不同，则无法播放，如：aac 文件，如果后缀名为大写 AAC，则无法播放。
 
 ```objc
 // initWithContentsOfURL
@@ -173,7 +173,7 @@ _player.currentTime = 15.0; //设置当前播放时间
 _player.numberOfLoops = 3; //循环播放时间
 _player.delegate = self; //委托事件
 
-// AVAudioPlayer委托事件
+// AVAudioPlayer 委托事件
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
   //音频文件播放结束
@@ -184,6 +184,6 @@ _player.delegate = self; //委托事件
 }
 ```
 
-ps : 录音类AVAudioRecorder最好设置为全局变量。如果为局部变量，当销毁掉时将结束录音。
+ps : 录音类 AVAudioRecorder 最好设置为全局变量。如果为局部变量，当销毁掉时将结束录音。
 
-附：据此写出的仿[微信录音Demo](https://github.com/myzerone/XJAudioRecorder){:target="_blank"}
+附：据此写出的仿 [微信录音 Demo](https://github.com/zerone-z/XJAudioRecorder){:target="_blank"}
