@@ -1,6 +1,6 @@
 # zerone-z.github.io
 
-# zeronez 的博客
+# zerone-z 的博客
 
 ## 配置
 
