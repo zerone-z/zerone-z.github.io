@@ -1,0 +1,16 @@
+# 通过 Github actions，在 Github 仓库的每一次 commit 后自动同步到 Gitee 上
+name: sync2gitee
+on: [push]
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Sync to Gitee
+      uses: wearerequired/git-mirror-action@master
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+      with:
+        # 来源仓库
+        source-repo: "https://${{ github.repository_owner }}:${{ secrets.MY_TOKEN }}@github.com/${{ github.repository }}.git"
+        # 目标仓库
+        destination-repo: "git@gitee.com:${{ secrets.GITEE_USER }}/${{ secrets.GITEE_REPO }}.git"
